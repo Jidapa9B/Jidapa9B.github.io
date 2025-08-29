@@ -1,104 +1,33 @@
-import { Card, CardContent } from "@/components/ui/card"
-import { Button } from "@/components/ui/button"
-import { ChevronRight } from "lucide-react"
+<!-- หน้าหลัก -->
+<section id="home" class="active">
+  <h2>โครงการบ้านแนะนำ</h2>
+  <p>เลือกชมโครงการบ้านของเราได้หลายทำเล ราคาเป็นมิตร</p>
 
-export default function HomePage() {
-  const projects = [
-    {
-      title: "Siri Place Bangyai",
-      location: "บางใหญ่, นนทบุรี",
-      image: "https://via.placeholder.com/400x250",
-      tag: "โครงการใหม่",
-    },
-    {
-      title: "CHER Vibhavadi Rangsit",
-      location: "ปทุมธานี",
-      image: "https://via.placeholder.com/400x250",
-      tag: "โครงการใหม่",
-    },
-    {
-      title: "Serene Raya Villas",
-      location: "ภูเก็ต",
-      image: "https://via.placeholder.com/400x250",
-      tag: "โครงการใหม่",
-    },
-    {
-      title: "Lake Valley Bowin",
-      location: "ชลบุรี",
-      image: "https://via.placeholder.com/400x250",
-      tag: "โครงการใหม่",
-    },
-  ]
-
-  return (
-    <div className="p-6 space-y-12">
-      {/* Section โครงการใหม่ล่าสุด */}
-      <div>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">โครงการใหม่ล่าสุด</h2>
-          <Button variant="ghost" className="flex items-center space-x-1">
-            <span>รายละเอียดเพิ่มเติม</span>
-            <ChevronRight size={18} />
-          </Button>
-        </div>
-
-        <div className="flex space-x-4 overflow-x-auto pb-4">
-          {projects.map((p, i) => (
-            <Card key={i} className="min-w-[250px] max-w-[280px] flex-shrink-0 rounded-2xl shadow-md">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img
-                    src={p.image}
-                    alt={p.title}
-                    className="rounded-t-2xl w-full h-40 object-cover"
-                  />
-                  <span className="absolute top-2 left-2 bg-red-600 text-white text-xs px-2 py-1 rounded-md">
-                    {p.tag}
-                  </span>
-                </div>
-                <div className="p-3">
-                  <h3 className="font-semibold">{p.title}</h3>
-                  <p className="text-sm text-gray-500">{p.location}</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
-
-      {/* Section ซื้อคอนโดใกล้ BTS/MRT */}
-      <div>
-        <div className="flex justify-between items-center mb-4">
-          <h2 className="text-xl font-bold">ซื้อคอนโดใกล้ BTS/MRT</h2>
-          <Button variant="ghost" className="flex items-center space-x-1">
-            <span>รายละเอียดเพิ่มเติม</span>
-            <ChevronRight size={18} />
-          </Button>
-        </div>
-
-        <div className="flex space-x-4 overflow-x-auto pb-4">
-          {[1, 2, 3, 4].map((n) => (
-            <Card key={n} className="min-w-[250px] max-w-[280px] flex-shrink-0 rounded-2xl shadow-md">
-              <CardContent className="p-0">
-                <div className="relative">
-                  <img
-                    src={`https://via.placeholder.com/400x250?text=Condo+${n}`}
-                    alt={`Condo ${n}`}
-                    className="rounded-t-2xl w-full h-40 object-cover"
-                  />
-                  <span className="absolute top-2 left-2 bg-orange-600 text-white text-xs px-2 py-1 rounded-md">
-                    คอนโด
-                  </span>
-                </div>
-                <div className="p-3">
-                  <h3 className="font-semibold">คอนโดใกล้ BTS สาย {n}</h3>
-                  <p className="text-sm text-gray-500">{Math.floor(Math.random() * 20000)} รายการ</p>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
-        </div>
-      </div>
+  <div class="carousel">
+    <!-- การ์ดโครงการ 1 -->
+    <div class="card">
+      <img src="house1.jpg" alt="บ้านโครงการ A">
+      <h3>โครงการบ้าน A</h3>
+      <p>ราคาเริ่มต้น 2.5 ล้านบาท</p>
+      <button onclick="showSection('details')">ดูรายละเอียด</button>
     </div>
-  )
-}
+
+    <!-- การ์ดโครงการ 2 -->
+    <div class="card">
+      <img src="house2.jpg" alt="บ้านโครงการ B">
+      <h3>โครงการบ้าน B</h3>
+      <p>ราคาเริ่มต้น 3.2 ล้านบาท</p>
+      <button onclick="showSection('details')">ดูรายละเอียด</button>
+    </div>
+
+    <!-- การ์ดโครงการ 3 -->
+    <div class="card">
+      <img src="house3.jpg" alt="บ้านโครงการ C">
+      <h3>โครงการบ้าน C</h3>
+      <p>ราคาเริ่มต้น 4.0 ล้านบาท</p>
+      <button onclick="showSection('details')">ดูรายละเอียด</button>
+    </div>
+
+    <!-- เพิ่มการ์ดโครงการได้เรื่อยๆ -->
+  </div>
+</section>
