@@ -1,256 +1,184 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>บ้านในฝันของคุณ</title>
-<style>
-/* ===== รีเซ็ต + ฟอนต์ ===== */
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Noto Sans Thai',sans-serif;}
-body{background:#f6f6f6;line-height:1.6;color:#123;}
-
-/* ===== Header Hero ===== */
-header{position:relative;background:url('https://picsum.photos/seed/house/1600/500') center/cover no-repeat;color:white;text-align:center;padding:60px 20px;}
-header::after{content:'';position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);}
-header h1,header p{position:relative;z-index:1;}
-header h1{font-size:2.8em;margin-bottom:10px;}
-header p{font-size:1.2em;}
-
-/* ===== Navbar ===== */
-nav{background:#2a7a36;padding:10px 20px;text-align:center;}
-nav a{color:white;margin:0 14px;text-decoration:none;font-weight:600;transition:.3s;}
-nav a:hover{color:#ffeb3b;}
-
-/* ===== Category Buttons ===== */
-.category{display:flex;flex-wrap:wrap;justify-content:center;margin:20px 0;}
-.category button{background:#e0e0e0;border:none;padding:10px 18px;margin:5px;border-radius:6px;cursor:pointer;transition:.3s;font-weight:600;}
-.category button:hover{background:#2a7a36;color:#fff;}
-
-/* ===== Carousel ===== */
-.carousel{display:flex;overflow-x:auto;gap:16px;padding:10px 20px;scroll-snap-type:x mandatory;}
-.project-card{flex:0 0 300px;background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 12px rgba(0,0,0,0.1);scroll-snap-align:start;transition:transform .3s;}
-.project-card:hover{transform:translateY(-6px);}
-.project-card img{width:100%;height:200px;object-fit:cover;}
-.project-card .info{padding:15px;}
-.project-card h3{margin-bottom:8px;}
-.project-card p{font-size:.9em;color:#555;}
-.project-card button{background:#2a7a36;color:#fff;border:none;padding:8px 12px;border-radius:4px;margin-top:10px;cursor:pointer;transition:.3s;}
-.project-card button:hover{background:#1e5625;}
-
-/* ===== Project Detail ===== */
-#project-detail{max-width:900px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);display:none;}
-#project-detail img{width:100%;border-radius:10px;margin-bottom:18px;}
-#project-detail h2{margin-bottom:12px;}
-#project-detail .box{background:#f9f9f9;padding:14px;margin:12px 0;border-radius:8px;}
-
-/* ===== Gallery grid ===== */
-.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px;}
-.gallery-item{border-radius:10px;padding:20px;text-align:center;color:#123;font-weight:600;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;background:#f2f2f2;}
-.gallery-item:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.08);}
-.gallery-item img{width:48px;height:48px;margin-bottom:8px;}
-
-/* ===== Lightbox ===== */
-#lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:1000;align-items:center;justify-content:center;flex-direction:column;}
-#lightbox img{max-width:90%;max-height:80%;border-radius:10px;box-shadow:0 0 20px rgba(0,0,0,.5);}
-#lightbox .close,#lightbox .prev,#lightbox .next{position:absolute;top:50%;transform:translateY(-50%);background:rgba(255,255,255,0.7);border:none;padding:10px 14px;cursor:pointer;font-size:20px;border-radius:50%;transition:.3s;}
-#lightbox .close{top:20px;right:20px;transform:none;}
-#lightbox .prev{left:30px;}
-#lightbox .next{right:30px;}
-#lightbox .close:hover,#lightbox .prev:hover,#lightbox .next:hover{background:#fff;}
-
-/* ===== Mortgage Calculator ===== */
-#calculator{max-width:900px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);}
-#calculator label{display:block;margin-top:10px;}
-#calculator input{width:100%;padding:8px;margin-top:4px;border-radius:4px;border:1px solid #ccc;}
-#calculator button{margin-top:12px;background:#2a7a36;color:#fff;border:none;padding:10px 16px;border-radius:4px;cursor:pointer;}
-#calculator button:hover{background:#1e5625;}
-#calc-result{margin-top:12px;font-weight:bold;}
-
-/* ===== Contact Form ===== */
-#contact{max-width:900px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,.08);}
-#contact label{display:block;margin-top:10px;}
-#contact input,#contact textarea{width:100%;padding:8px;margin-top:4px;border-radius:4px;border:1px solid #ccc;}
-#contact button{margin-top:12px;background:#2a7a36;color:#fff;border:none;padding:10px 16px;border-radius:4px;cursor:pointer;}
-#contact button:hover{background:#1e5625;}
-
-/* ===== Responsive ===== */
-@media(max-width:900px){
-  header h1{font-size:2em;}
-  .project-card{flex:0 0 260px;}
-}
-@media(max-width:520px){
-  nav a{display:block;margin:8px 0;}
-  .category{flex-direction:column;align-items:center;}
-}
-</style>
+  <meta charset="UTF-8">
+  <title>บ้านในฝันของคุณ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body{margin:0;font-family:'Noto Sans Thai',sans-serif;background:#fafafa;color:#333}
+    header{background:linear-gradient(120deg,#00695c,#26a69a);color:#fff;padding:40px 20px;text-align:center}
+    header h1{margin:0;font-size:2.2em}
+    nav{background:#004d40;display:flex;justify-content:center;padding:10px}
+    nav a{color:#fff;text-decoration:none;margin:0 15px;font-weight:bold}
+    nav a:hover{text-decoration:underline}
+    .container{padding:20px;max-width:1000px;margin:auto}
+    h2{color:#00695c;border-bottom:2px solid #26a69a;padding-bottom:5px}
+    .categories{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
+    .categories button{flex:1;padding:10px;background:#26a69a;color:#fff;border:none;cursor:pointer;border-radius:5px}
+    .categories button:hover{background:#1e827c}
+    .carousel{display:flex;overflow-x:auto;gap:15px;scroll-behavior:smooth;padding:10px 0}
+    .project{flex:0 0 280px;background:#fff;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.08);padding:12px;cursor:pointer;transition:transform .2s}
+    .project:hover{transform:translateY(-5px)}
+    .project img{width:100%;height:160px;object-fit:cover;border-radius:5px}
+    .project h3{margin:10px 0 5px}
+    .project p{margin:3px 0;font-size:.9em;color:#555}
+    #project-detail{display:none;margin-top:30px}
+    .box{background:#fff;padding:20px;margin-bottom:15px;border-radius:8px;box-shadow:0 4px 8px rgba(0,0,0,0.05)}
+    .price{font-size:1.4em;color:#e53935;font-weight:bold}
+    .calculator label{display:block;margin-top:10px}
+    .calculator input{width:100%;padding:8px;margin-top:5px;border:1px solid #ccc;border-radius:5px}
+    .calculator button{margin-top:10px;padding:10px 20px;background:#26a69a;color:#fff;border:none;border-radius:5px;cursor:pointer}
+    .calculator button:hover{background:#1e827c}
+    form{display:flex;flex-direction:column}
+    form input,form textarea{margin:5px 0;padding:10px;border:1px solid #ccc;border-radius:5px}
+    form button{margin-top:10px;padding:10px;background:#26a69a;color:#fff;border:none;border-radius:5px;cursor:pointer}
+    form button:hover{background:#1e827c}
+    @media(max-width:900px){.carousel{flex-direction:column;align-items:center}.project{width:90%}}
+    @media(max-width:520px){nav{flex-direction:column}.categories{flex-direction:column}}
+    
+    /* ===== Gallery grid (รายละเอียดเพิ่มเติม) ===== */
+    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+    .gallery-item{border-radius:10px;padding:20px;text-align:center;color:#123;font-weight:600;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;background:#f0f0f0}
+    .gallery-item:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.08)}
+    .gallery-item img{width:48px;height:48px;margin-bottom:8px}
+    
+    /* ===== Lightbox Popup ===== */
+    .lightbox{display:none;position:fixed;z-index:9999;left:0;top:0;width:100%;height:100%;background:rgba(0,0,0,0.9);align-items:center;justify-content:center;flex-direction:column}
+    .lightbox img{max-width:90%;max-height:80%;border-radius:8px;box-shadow:0 0 20px rgba(255,255,255,0.3)}
+    .lightbox .close{position:absolute;top:20px;right:30px;font-size:40px;color:#fff;cursor:pointer}
+    .lightbox .prev,.lightbox .next{cursor:pointer;position:absolute;top:50%;width:auto;margin-top:-22px;padding:16px;color:#fff;font-weight:bold;font-size:30px;border-radius:0 3px 3px 0;user-select:none}
+    .lightbox .next{right:10px;border-radius:3px 0 0 3px}
+    .lightbox .prev{left:10px}
+    .lightbox .prev:hover,.lightbox .next:hover,.lightbox .close:hover{color:#26a69a}
+  </style>
 </head>
 <body>
-<header>
-  <h1>บ้านในฝันของคุณ</h1>
-  <p>พบโครงการที่ใช่ พร้อมคำนวณสินเชื่อได้ทันที</p>
-</header>
-<nav>
-  <a href="#">หน้าแรก</a>
-  <a href="#project-detail">รายละเอียด</a>
-  <a href="#calculator">คำนวณ</a>
-  <a href="#contact">ติดต่อ</a>
-</nav>
-
-<!-- Category -->
-<div class="category">
-  <button onclick="filterCategory('all')">ทั้งหมด</button>
-  <button onclick="filterCategory('บ้านเดี่ยว')">บ้านเดี่ยว</button>
-  <button onclick="filterCategory('ทาวน์โฮม')">ทาวน์โฮม</button>
-  <button onclick="filterCategory('คอนโด')">คอนโด</button>
-  <button onclick="filterCategory('โครงการใหม่')">โครงการใหม่</button>
-</div>
-
-<!-- Carousel -->
-<div class="carousel" id="carousel"></div>
-
-<!-- Project Detail -->
-<div id="project-detail">
-  <img id="detail-img" src="" alt="">
-  <h2 id="detail-name"></h2>
-  <div class="box" id="detail-info"></div>
-  <div class="box" id="detail-highlights"></div>
-
-  <!-- Gallery -->
-  <div class="box gallery">
-    <h4>📷 แกลเลอรี่</h4>
-    <div class="gallery-grid" id="detail-gallery"></div>
+  <header>
+    <h1>บ้านในฝันของคุณ</h1>
+    <p>ค้นหาบ้านที่ใช่ สำหรับคุณและครอบครัว</p>
+  </header>
+  <nav>
+    <a href="#">หน้าแรก</a>
+    <a href="#">รายละเอียด</a>
+    <a href="#">คำนวณ</a>
+    <a href="#">ติดต่อ</a>
+  </nav>
+  <div class="container">
+    <h2>เลือกประเภทบ้าน</h2>
+    <div class="categories">
+      <button onclick="filterCategory('บ้านเดี่ยว')">บ้านเดี่ยว</button>
+      <button onclick="filterCategory('ทาวน์โฮม')">ทาวน์โฮม</button>
+      <button onclick="filterCategory('คอนโด')">คอนโด</button>
+      <button onclick="filterCategory('โครงการใหม่')">โครงการใหม่</button>
+    </div>
+    <h2>โครงการบ้าน</h2>
+    <div class="carousel" id="carousel"></div>
+    <div id="project-detail">
+      <h2>รายละเอียดโครงการ</h2>
+      <div class="box" id="detail-info"></div>
+      <div class="box highlights">
+        <h4>✨ จุดเด่น</h4>
+        <ul id="detail-highlights"></ul>
+      </div>
+      <div class="box gallery">
+        <h4>📷 แกลเลอรี่</h4>
+        <div class="gallery-grid" id="detail-gallery"></div>
+      </div>
+      <div class="box price" id="detail-price"></div>
+      <div class="box"><button id="contactBtn">📞 ติดต่อเลย</button></div>
+    </div>
+    <div class="box calculator">
+      <h2>คำนวณสินเชื่อบ้าน</h2>
+      <label>ราคาบ้าน (บาท)</label>
+      <input type="number" id="price" value="3000000">
+      <label>เงินดาวน์ (บาท)</label>
+      <input type="number" id="down" value="300000">
+      <label>อัตราดอกเบี้ย (% ต่อปี)</label>
+      <input type="number" id="rate" value="3.5">
+      <label>ระยะเวลา (ปี)</label>
+      <input type="number" id="years" value="20">
+      <button onclick="calcLoan()">คำนวณ</button>
+      <p id="loan-result"></p>
+    </div>
+    <div class="box contact">
+      <h2>ติดต่อเรา</h2>
+      <form onsubmit="sendEmail(event)">
+        <input type="text" placeholder="ชื่อของคุณ" required>
+        <input type="email" placeholder="อีเมล" required>
+        <textarea rows="4" placeholder="ข้อความของคุณ"></textarea>
+        <button type="submit">ส่งข้อความ</button>
+      </form>
+    </div>
   </div>
-
-  <div class="box price"><strong id="detail-price"></strong></div>
-  <div class="box">
-    <p>📞 <span id="detail-phone"></span></p>
-    <p>💬 LINE: <span id="detail-line"></span></p>
-    <button id="contact-btn">ติดต่อเลย</button>
-  </div>
-</div>
-
-<!-- Lightbox -->
-<div id="lightbox">
-  <button class="close" onclick="closeLightbox()">✖</button>
-  <button class="prev" onclick="prevImage()">❮</button>
-  <img id="lightbox-img" src="">
-  <button class="next" onclick="nextImage()">❯</button>
-</div>
-
-<!-- Calculator -->
-<div id="calculator">
-  <h2>คำนวณสินเชื่อบ้าน</h2>
-  <label>ราคารวม (บาท)</label>
-  <input type="number" id="loan" value="3000000">
-  <label>อัตราดอกเบี้ยต่อปี (%)</label>
-  <input type="number" id="rate" value="5">
-  <label>ระยะเวลากู้ (ปี)</label>
-  <input type="number" id="years" value="20">
-  <button onclick="calcLoan()">คำนวณ</button>
-  <div id="calc-result"></div>
-</div>
-
-<!-- Contact -->
-<div id="contact">
-  <h2>ติดต่อเรา</h2>
-  <form action="mailto:test@email.com" method="post" enctype="text/plain">
-    <label>ชื่อ</label>
-    <input type="text" name="name" required>
-    <label>อีเมล</label>
-    <input type="email" name="email" required>
-    <label>ข้อความ</label>
-    <textarea name="message" rows="4" required></textarea>
-    <button type="submit">ส่งข้อความ</button>
-  </form>
-</div>
-
-<script>
-const projects = [
-  { 
-    id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, 
-    type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', 
-    rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', 
-    highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], 
-    img:'https://picsum.photos/seed/h1/900/500', 
-    phone:'089-123-4567', line:'@sukjaivilla',
-    gallery:[
-      {title:'รูปบ้านภายนอก', img:'https://picsum.photos/seed/g1/600/400'},
-      {title:'รูปห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/g2/600/400'},
-      {title:'รูปห้องนอน', img:'https://picsum.photos/seed/g3/600/400'},
-      {title:'แปลนบ้านเล็ก ๆ', img:'https://picsum.photos/seed/g4/600/400'}
-    ]
-  },
-  { 
-    id:'B', name:'ทาวน์โฮม B', category:'ทาวน์โฮม', price:2200000, 
-    type:'ทาวน์โฮม 2 ชั้น', lot:'20 ตร.ว.', area:'120 ตร.ม.', 
-    rooms:'2 ห้องนอน | 2 ห้องน้ำ | จอดรถ 1 คัน', 
-    highlights:['ทำเลดี ใกล้ตลาด','บ้านใหม่พร้อมเข้าอยู่'], 
-    img:'https://picsum.photos/seed/h2/900/500', 
-    phone:'087-222-3333', line:'@townhomeb',
-    gallery:[
-      {title:'รูปภายนอก', img:'https://picsum.photos/seed/t1/600/400'},
-      {title:'รูปห้องนั่งเล่น', img:'https://picsum.photos/seed/t2/600/400'},
-      {title:'รูปห้องนอน', img:'https://picsum.photos/seed/t3/600/400'},
-      {title:'แปลนบ้าน', img:'https://picsum.photos/seed/t4/600/400'}
-    ]
-  }
-];
-
-const $=s=>document.querySelector(s),carousel=$('#carousel');
-function renderProjects(list){carousel.innerHTML='';list.forEach(p=>{
-  const card=document.createElement('div');card.className='project-card';
-  card.innerHTML=`<img src="${p.img}" alt="${p.name}">
-    <div class="info"><h3>${p.name}</h3><p>${p.type}<br>${p.rooms}</p>
-    <button onclick="openProject('${p.id}')">ดูรายละเอียด</button></div>`;
-  carousel.appendChild(card);
-});}
-renderProjects(projects);
-
-function filterCategory(cat){cat==='all'?renderProjects(projects):renderProjects(projects.filter(p=>p.category===cat));}
-
-function openProject(id){
-  const p=projects.find(x=>x.id===id);if(!p)return;
-  $('#project-detail').style.display='block';
-  $('#detail-img').src=p.img;$('#detail-name').textContent=p.name;
-  $('#detail-info').innerHTML=`<p><strong>ประเภท:</strong> ${p.type}</p>
-    <p><strong>ขนาดที่ดิน:</strong> ${p.lot}</p>
-    <p><strong>พื้นที่ใช้สอย:</strong> ${p.area}</p>
-    <p><strong>ห้อง:</strong> ${p.rooms}</p>`;
-  $('#detail-highlights').innerHTML='<strong>จุดเด่น:</strong><ul>'+p.highlights.map(h=>`<li>${h}</li>`).join('')+'</ul>';
-  $('#detail-price').textContent='ราคา: '+p.price.toLocaleString()+' บาท';
-  $('#detail-phone').textContent=p.phone;$('#detail-line').textContent=p.line;
-  $('#contact-btn').onclick=()=>window.location.href=`tel:${p.phone}`;
   
-  // render gallery
-  const gwrap=$('#detail-gallery');gwrap.innerHTML='';
-  if(Array.isArray(p.gallery)){
-    p.gallery.forEach((g,i)=>{
-      const el=document.createElement('div');el.className='gallery-item';
-      el.innerHTML=`<img src="${g.img}" alt="${g.title}"><div>${g.title}</div>`;
-      el.addEventListener('click',()=>openLightbox(p.gallery,i));
-      gwrap.appendChild(el);
-    });
-  }
-  window.scrollTo({top:$('#project-detail').offsetTop-60,behavior:'smooth'});
-}
-
-/* ===== Lightbox Functions ===== */
-let currentGallery=[],currentIndex=0;
-function openLightbox(gallery,index){
-  currentGallery=gallery;currentIndex=index;
-  $('#lightbox-img').src=currentGallery[currentIndex].img;
-  $('#lightbox').style.display='flex';
-}
-function closeLightbox(){$('#lightbox').style.display='none';}
-function prevImage(){if(currentGallery.length){currentIndex=(currentIndex-1+currentGallery.length)%currentGallery.length;$('#lightbox-img').src=currentGallery[currentIndex].img;}}
-function nextImage(){if(currentGallery.length){currentIndex=(currentIndex+1)%currentGallery.length;$('#lightbox-img').src=currentGallery[currentIndex].img;}}
-
-/* ===== Loan Calculator ===== */
-function calcLoan(){
-  const loan=parseFloat($('#loan').value),rate=parseFloat($('#rate').value)/100/12,months=parseInt($('#years').value)*12;
-  const pay=(loan*rate)/(1-Math.pow(1+rate,-months));
-  $('#calc-result').textContent='ค่างวดประมาณ: '+(isFinite(pay)?pay.toFixed(2):0)+' บาท/เดือน';
-}
-</script>
+  <!-- Lightbox element -->
+  <div class="lightbox" id="lightbox">
+    <span class="close" onclick="closeLightbox()">&times;</span>
+    <span class="prev" onclick="changeSlide(-1)">&#10094;</span>
+    <img id="lightbox-img" src="">
+    <span class="next" onclick="changeSlide(1)">&#10095;</span>
+  </div>
+  
+  <script>
+    const $=sel=>document.querySelector(sel);
+    const carousel=$('#carousel');
+    const projects=[
+      {id:'A',name:'บ้านในฝัน A',category:'บ้านเดี่ยว',price:3500000,type:'บ้านเดี่ยว 2 ชั้น',lot:'60 ตร.ว.',area:'180 ตร.ม.',rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน',highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'],img:'https://picsum.photos/seed/h1/900/500',phone:'089-123-4567',line:'@sukjaivilla',
+        gallery:[
+          {title:'รูปบ้านภายนอก',img:'https://picsum.photos/seed/g1/900/600'},
+          {title:'รูปห้องนั่งเล่น/ครัว',img:'https://picsum.photos/seed/g2/900/600'},
+          {title:'รูปห้องนอน',img:'https://picsum.photos/seed/g3/900/600'},
+          {title:'แปลนบ้านเล็ก ๆ',img:'https://picsum.photos/seed/g4/900/600'}
+        ]
+      },
+      {id:'B',name:'ทาวน์โฮม B',category:'ทาวน์โฮม',price:2500000,type:'ทาวน์โฮม 2 ชั้น',lot:'20 ตร.ว.',area:'120 ตร.ม.',rooms:'2 ห้องนอน | 2 ห้องน้ำ | ที่จอด 1 คัน',highlights:['เดินทางสะดวก','ราคาคุ้มค่า','เหมาะกับครอบครัวเริ่มต้น'],img:'https://picsum.photos/seed/h2/900/500',phone:'086-987-6543',line:'@townhomeB',
+        gallery:[
+          {title:'รูปบ้านภายนอก',img:'https://picsum.photos/seed/t1/900/600'},
+          {title:'ห้องนั่งเล่น',img:'https://picsum.photos/seed/t2/900/600'},
+          {title:'ห้องนอน',img:'https://picsum.photos/seed/t3/900/600'},
+          {title:'แปลนบ้าน',img:'https://picsum.photos/seed/t4/900/600'}
+        ]
+      }
+    ];
+    
+    let filtered=projects;
+    function renderProjects(){carousel.innerHTML='';filtered.forEach(p=>{const el=document.createElement('div');el.className='project';el.innerHTML=`<img src="${p.img}"><h3>${p.name}</h3><p>${p.type}</p><p>${p.price.toLocaleString()} บาท</p>`;el.onclick=()=>openProject(p.id);carousel.appendChild(el);});}
+    function filterCategory(cat){filtered=projects.filter(p=>p.category===cat);renderProjects();}
+    
+    function openProject(id){
+      const p=projects.find(x=>x.id===id);
+      if(!p)return;
+      $('#project-detail').style.display='block';
+      $('#detail-info').innerHTML=`<h3>${p.name}</h3><p>${p.type}</p><p>ที่ดิน: ${p.lot}</p><p>พื้นที่ใช้สอย: ${p.area}</p><p>${p.rooms}</p>`;
+      $('#detail-highlights').innerHTML=p.highlights.map(h=>`<li>${h}</li>`).join('');
+      $('#detail-price').innerText=`ราคา: ${p.price.toLocaleString()} บาท`;
+      
+      // render gallery
+      const gwrap=$('#detail-gallery');gwrap.innerHTML='';
+      if(Array.isArray(p.gallery)){
+        p.gallery.forEach((g,i)=>{
+          const el=document.createElement('div');
+          el.className='gallery-item';
+          el.innerHTML=`<img src="${g.img}" alt="${g.title}"><div>${g.title}</div>`;
+          el.addEventListener('click',()=>openLightbox(p.gallery,i));
+          gwrap.appendChild(el);
+        });
+      }
+      $('#contactBtn').onclick=()=>alert(`ติดต่อ: โทร ${p.phone} | Line: ${p.line}`);
+      window.scrollTo({top:$('#project-detail').offsetTop,behavior:'smooth'});
+    }
+    
+    function calcLoan(){const price=+$('#price').value,down=+$('#down').value,rate=+$('#rate').value/100/12,years=+$('#years').value,months=years*12,loan=price-down;const pay=(loan*rate)/(1-Math.pow(1+rate,-months));$('#loan-result').innerText=`ผ่อนต่อเดือน: ${isFinite(pay)?pay.toFixed(2):0} บาท`;}
+    function sendEmail(e){e.preventDefault();alert('ส่งข้อความเรียบร้อย');}
+    
+    // ===== Lightbox Functions =====
+    let currentGallery=[],currentIndex=0;
+    function openLightbox(gallery,index){currentGallery=gallery;currentIndex=index;$('#lightbox').style.display='flex';updateLightbox();}
+    function updateLightbox(){$('#lightbox-img').src=currentGallery[currentIndex].img;}
+    function closeLightbox(){$('#lightbox').style.display='none';}
+    function changeSlide(dir){currentIndex=(currentIndex+dir+currentGallery.length)%currentGallery.length;updateLightbox();}
+    
+    renderProjects();
+  </script>
 </body>
 </html>
