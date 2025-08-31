@@ -1,205 +1,158 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>บ้านในฝันของคุณ</title>
-  <style>
-    body{margin:0;font-family:'Noto Sans Thai',sans-serif;background:#f9fafc;color:#123;}
-    a{text-decoration:none;color:inherit}
-    header{background:linear-gradient(120deg,#4facfe,#00f2fe);color:#fff;text-align:center;padding:40px 20px}
-    nav{background:#4CAF50;display:flex;justify-content:center}
-    nav a{padding:14px 20px;color:white;font-weight:bold}
-    nav a:hover{background:#45a049}
-    .categories{display:flex;flex-wrap:wrap;justify-content:center;margin:20px auto;gap:10px;max-width:1000px}
-    .cat-btn{flex:1 1 calc(25% - 10px);padding:20px;background:#fff;border-radius:8px;box-shadow:0 4px 10px rgba(0,0,0,0.08);text-align:center;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease}
-    .cat-btn:hover{transform:translateY(-3px);box-shadow:0 6px 16px rgba(0,0,0,0.12)}
-    .carousel{display:flex;overflow-x:auto;gap:14px;padding:20px;scroll-snap-type:x mandatory}
-    .carousel::-webkit-scrollbar{display:none}
-    .project{flex:0 0 280px;background:white;border-radius:10px;overflow:hidden;scroll-snap-align:start;box-shadow:0 4px 10px rgba(0,0,0,0.1);transition:transform .2s ease;cursor:pointer}
-    .project:hover{transform:translateY(-4px)}
-    .project img{width:100%;height:180px;object-fit:cover}
-    .project .info{padding:14px}
-    .project .info h3{margin:0;font-size:1.2em;color:#222}
-    .project .info p{margin:6px 0;color:#555;font-size:.9em}
-    #project-detail{max-width:900px;margin:20px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.1);display:none}
-    #project-detail h2{margin-top:0}
-    .box{padding:14px;margin:10px 0;border-radius:8px;background:#f1f9f9}
-    .box h4{margin:0 0 6px;color:#111}
-    .highlights{display:flex;flex-direction:column;gap:6px}
-    .highlight{padding:8px;background:#e3f2fd;border-radius:6px;font-size:.9em}
-    .price{background:#fff3e0;font-size:1.2em;font-weight:bold;color:#d84315}
-    .contact-btn{display:inline-block;margin-top:12px;padding:10px 18px;background:#4CAF50;color:#fff;border-radius:6px;font-weight:bold;transition:background .2s}
-    .contact-btn:hover{background:#45a049}
-    #mortgage{max-width:900px;margin:20px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-    #mortgage input{padding:8px;margin:6px;width:100%;max-width:200px}
-    #mortgage button{padding:10px 20px;background:#4CAF50;color:#fff;border:none;border-radius:6px;cursor:pointer}
-    #mortgage button:hover{background:#45a049}
-    #contact{max-width:900px;margin:20px auto;padding:20px;background:white;border-radius:10px;box-shadow:0 4px 16px rgba(0,0,0,0.1)}
-    #contact input,#contact textarea{width:100%;padding:10px;margin:6px 0;border:1px solid #ccc;border-radius:6px}
-    #contact button{padding:10px 20px;background:#4CAF50;color:#fff;border:none;border-radius:6px;cursor:pointer}
-    #contact button:hover{background:#45a049}
-    @media(max-width:900px){.cat-btn{flex:1 1 calc(50% - 10px)}}
-    @media(max-width:520px){.cat-btn{flex:1 1 100%}.carousel{padding:10px}}
-    
-    /* ===== Gallery grid ===== */
-    .gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
-    .gallery-item{border-radius:10px;padding:20px;text-align:center;color:#123;font-weight:600;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease}
-    .gallery-item:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.08)}
-    .gallery-item img{width:100%;height:140px;object-fit:cover;border-radius:6px;margin-bottom:8px}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>บ้านในฝันของคุณ</title>
+<style>
+/* ===== Reset & Base ===== */
+*{box-sizing:border-box;margin:0;padding:0;font-family:'Noto Sans Thai',sans-serif}
+body{line-height:1.6;color:#123;background:#fff}
+a{text-decoration:none;color:inherit}
+img{max-width:100%;display:block;border-radius:6px}
+.container{width:90%;max-width:1200px;margin:auto}
+h2{text-align:center;margin:20px 0;color:#00796b}
 
-    /* ===== Lightbox ===== */
-    .lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);justify-content:center;align-items:center;z-index:1000}
-    .lightbox img{max-width:90%;max-height:80%;border-radius:10px;box-shadow:0 6px 20px rgba(0,0,0,0.5)}
-    .lightbox .close,.lightbox .prev,.lightbox .next{
-      position:absolute;top:50%;transform:translateY(-50%);
-      background:rgba(0,0,0,0.6);color:#fff;border:none;
-      font-size:2em;padding:10px;cursor:pointer;border-radius:50%
-    }
-    .lightbox .close{top:30px;right:30px;transform:none}
-    .lightbox .prev{left:30px}
-    .lightbox .next{right:30px}
-    .lightbox .prev:hover,.lightbox .next:hover,.lightbox .close:hover{background:rgba(0,0,0,0.8)}
-  </style>
+/* ===== Header Hero ===== */
+.hero{position:relative;background:url('https://picsum.photos/seed/homehero/1600/700') center/cover no-repeat;height:70vh;display:flex;align-items:center;justify-content:center;color:#fff;text-align:center}
+.hero::after{content:"";position:absolute;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.45)}
+.hero-content{position:relative;z-index:1}
+.hero h1{font-size:3em;margin-bottom:10px}
+
+/* ===== Navbar ===== */
+nav{background:#00796b;padding:12px 0}
+nav ul{display:flex;justify-content:center;list-style:none}
+nav li{margin:0 15px}
+nav a{color:#fff;font-weight:bold}
+
+/* ===== Categories ===== */
+.categories{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin:20px 0}
+.categories button{padding:10px 18px;border:none;background:#004d40;color:#fff;border-radius:6px;cursor:pointer;transition:.3s}
+.categories button:hover{background:#00695c}
+
+/* ===== Carousel ===== */
+.carousel{display:flex;overflow-x:auto;scroll-behavior:smooth;gap:14px;padding:20px 0}
+.project-card{min-width:280px;background:#f9f9f9;border-radius:10px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,0.1);flex:0 0 auto}
+.project-card img{width:100%;height:180px;object-fit:cover}
+.project-card .info{padding:12px}
+.project-card h3{margin-bottom:6px}
+.project-card button{margin-top:8px;padding:6px 12px;background:#00796b;color:#fff;border:none;border-radius:4px;cursor:pointer}
+
+/* ===== Project Detail ===== */
+#project-detail{display:none;margin:20px 0}
+.project-boxes{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px}
+.box{background:#f0f0f0;padding:14px;border-radius:8px}
+.box h4{margin-bottom:6px;color:#00796b}
+.box.highlight ul{padding-left:20px}
+
+/* ===== Gallery grid (ใหม่) ===== */
+.gallery-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;margin-top:14px}
+.gallery-item{border-radius:10px;padding:14px;text-align:center;color:#123;font-weight:600;cursor:pointer;transition:transform .2s ease, box-shadow .2s ease;background:#fff}
+.gallery-item:hover{transform:translateY(-4px);box-shadow:0 6px 16px rgba(0,0,0,0.08)}
+.gallery-item img{width:60px;height:60px;margin-bottom:8px;object-fit:cover}
+
+/* ===== Lightbox (ใหม่) ===== */
+.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,0.85);z-index:2000;align-items:center;justify-content:center;flex-direction:column}
+.lightbox img{max-width:90%;max-height:80vh;border-radius:10px;box-shadow:0 0 20px rgba(0,0,0,0.5)}
+.lightbox .controls{margin-top:14px;display:flex;gap:12px}
+.lightbox button{padding:8px 14px;background:#00796b;color:#fff;border:none;border-radius:4px;cursor:pointer}
+
+/* ===== Mortgage ===== */
+.calculator{margin:20px auto;padding:14px;border:1px solid #ccc;border-radius:8px;max-width:400px}
+.calculator input{width:100%;margin:6px 0;padding:8px}
+
+/* ===== Contact ===== */
+.contact-form{margin:20px auto;max-width:500px}
+.contact-form input,.contact-form textarea{width:100%;margin:6px 0;padding:10px}
+.contact-form button{background:#00796b;color:#fff;padding:10px 18px;border:none;border-radius:6px;cursor:pointer}
+
+/* ===== Responsive ===== */
+@media(max-width:900px){.hero h1{font-size:2em}.categories{flex-direction:column;align-items:center}}
+@media(max-width:520px){.hero{height:50vh}}
+</style>
 </head>
 <body>
-  <header>
-    <h1>บ้านในฝันของคุณ</h1>
-    <p>เลือกบ้านที่ตรงใจ พร้อมคำนวณการผ่อนง่าย ๆ</p>
-  </header>
-  <nav>
-    <a href="#">หน้าแรก</a>
-    <a href="#project-detail">รายละเอียด</a>
-    <a href="#mortgage">คำนวณ</a>
-    <a href="#contact">ติดต่อ</a>
-  </nav>
+<!-- Hero -->
+<section class="hero"><div class="hero-content"><h1>บ้านในฝันของคุณ</h1><p>โครงการบ้านที่ตอบโจทย์ทุกไลฟ์สไตล์</p></div></section>
+
+<!-- Nav -->
+<nav><ul><li><a href="#">หน้าแรก</a></li><li><a href="#project-detail">รายละเอียด</a></li><li><a href="#mortgage">คำนวณ</a></li><li><a href="#contact">ติดต่อ</a></li></ul></nav>
+
+<div class="container">
+  <h2>เลือกประเภทบ้าน</h2>
   <div class="categories">
-    <div class="cat-btn">🏡 บ้านเดี่ยว</div>
-    <div class="cat-btn">🏘️ ทาวน์โฮม</div>
-    <div class="cat-btn">🏢 คอนโด</div>
-    <div class="cat-btn">✨ โครงการใหม่</div>
+    <button onclick="filterCategory('ทั้งหมด')">ทั้งหมด</button>
+    <button onclick="filterCategory('บ้านเดี่ยว')">บ้านเดี่ยว</button>
+    <button onclick="filterCategory('ทาวน์โฮม')">ทาวน์โฮม</button>
+    <button onclick="filterCategory('คอนโด')">คอนโด</button>
+    <button onclick="filterCategory('โครงการใหม่')">โครงการใหม่</button>
   </div>
-  <div class="carousel" id="project-carousel"></div>
-  
+
+  <h2>โครงการบ้าน</h2>
+  <div class="carousel" id="carousel"></div>
+
+  <!-- Project Detail -->
   <div id="project-detail">
-    <h2 id="detail-title"></h2>
-    <div class="box"><h4>🏠 รายละเอียดโครงการ</h4><div id="detail-info"></div></div>
-    <div class="box"><h4>⭐ ไฮไลท์</h4><div class="highlights" id="detail-highlights"></div></div>
-    
-    <!-- ✅ Gallery Section -->
-    <div class="box gallery">
-      <h4>📷 แกลเลอรี่</h4>
-      <div class="gallery-grid" id="detail-gallery"></div>
+    <h2>รายละเอียดโครงการ</h2>
+    <div class="project-boxes">
+      <div class="box info"><h4>ข้อมูลทั่วไป</h4><div id="detail-info"></div></div>
+      <div class="box highlight"><h4>จุดเด่น</h4><ul id="detail-highlights"></ul></div>
+      <!-- Gallery -->
+      <div class="box gallery"><h4>📷 แกลเลอรี่</h4><div class="gallery-grid" id="detail-gallery"></div></div>
+      <div class="box price"><h4>ราคา</h4><p id="detail-price"></p><button id="contact-btn">ติดต่อเลย</button></div>
     </div>
-
-    <div class="box price" id="detail-price"></div>
-    <a id="detail-contact" class="contact-btn">ติดต่อเลย</a>
-  </div>
-  
-  <div id="mortgage">
-    <h2>คำนวณสินเชื่อ</h2>
-    <label>ราคาบ้าน: <input type="number" id="m-price" value="3000000"></label><br>
-    <label>ดอกเบี้ย (% ต่อปี): <input type="number" id="m-rate" value="3"></label><br>
-    <label>ระยะเวลา (ปี): <input type="number" id="m-years" value="20"></label><br>
-    <button onclick="calcMortgage()">คำนวณ</button>
-    <p id="m-result"></p>
-  </div>
-  
-  <div id="contact">
-    <h2>ติดต่อเรา</h2>
-    <form action="mailto:info@example.com" method="post" enctype="text/plain">
-      <input type="text" placeholder="ชื่อ" name="name" required>
-      <input type="email" placeholder="อีเมล" name="email" required>
-      <textarea placeholder="ข้อความ" name="message" required></textarea>
-      <button type="submit">ส่งข้อความ</button>
-    </form>
   </div>
 
-  <!-- ✅ Lightbox -->
+  <!-- Lightbox -->
   <div class="lightbox" id="lightbox">
-    <button class="close" onclick="closeLightbox()">✖</button>
-    <button class="prev" onclick="prevImage()">❮</button>
     <img id="lightbox-img" src="">
-    <button class="next" onclick="nextImage()">❯</button>
+    <div class="controls">
+      <button onclick="prevImage()">⬅️ ก่อนหน้า</button>
+      <button onclick="nextImage()">➡️ ถัดไป</button>
+      <button onclick="closeLightbox()">❌ ปิด</button>
+    </div>
   </div>
 
-  <script>
-    const $=s=>document.querySelector(s)
-    const projects = [
-      { 
-        id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, 
-        type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', 
-        rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', 
-        highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], 
-        img:'https://picsum.photos/seed/h1/900/500', 
-        phone:'089-123-4567', line:'@sukjaivilla',
-        gallery:[
-          {title:'รูปบ้านภายนอก', img:'https://picsum.photos/seed/g1/900/600'},
-          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/g2/900/600'},
-          {title:'รูปห้องนอน', img:'https://picsum.photos/seed/g3/900/600'},
-          {title:'แปลนบ้านเล็ก ๆ', img:'https://picsum.photos/seed/g4/900/600'}
-        ]
-      }
-    ];
-    const carousel=$('#project-carousel');
-    projects.forEach(p=>{
-      const d=document.createElement('div');
-      d.className='project';
-      d.innerHTML=`<img src="${p.img}"><div class="info"><h3>${p.name}</h3><p>${p.category}</p></div>`;
-      d.onclick=()=>openProject(p.id);
-      carousel.appendChild(d);
-    });
-    function openProject(id){
-      const p=projects.find(x=>x.id===id);
-      if(!p)return;
-      $('#project-detail').style.display='block';
-      $('#detail-title').innerText=p.name;
-      $('#detail-info').innerHTML=`<p>🏷️ ประเภท: ${p.type}</p><p>📐 ขนาดที่ดิน: ${p.lot}</p><p>🏢 พื้นที่ใช้สอย: ${p.area}</p><p>🛏️ ห้อง: ${p.rooms}</p>`;
-      $('#detail-highlights').innerHTML=p.highlights.map(h=>`<div class="highlight">${h}</div>`).join('');
-      $('#detail-price').innerText="ราคา: "+p.price.toLocaleString()+" บาท";
-      $('#detail-contact').href="tel:"+p.phone;
+  <!-- Mortgage -->
+  <section id="mortgage"><h2>คำนวณสินเชื่อ</h2><div class="calculator"><input type="number" id="loan" placeholder="วงเงินกู้ (บาท)"><input type="number" id="rate" placeholder="ดอกเบี้ยต่อปี (%)"><input type="number" id="years" placeholder="ระยะเวลากู้ (ปี)"><button onclick="calcMortgage()">คำนวณ</button><p id="result"></p></div></section>
 
-      // render gallery
-      const gwrap = $('#detail-gallery'); 
-      gwrap.innerHTML='';
-      if(Array.isArray(p.gallery)){
-        p.gallery.forEach((g,i)=>{
-          const el=document.createElement('div');
-          el.className='gallery-item';
-          el.innerHTML=`<img src="${g.img}" alt="${g.title}"><div>${g.title}</div>`;
-          el.addEventListener('click',()=>openLightbox(p.gallery,i));
-          gwrap.appendChild(el);
-        });
-      }
-      $('#project-detail').scrollIntoView({behavior:'smooth'});
-    }
-    function calcMortgage(){
-      const P=parseFloat($('#m-price').value),r=parseFloat($('#m-rate').value)/100/12,n=parseInt($('#m-years').value)*12;
-      const pay=P*(r*Math.pow(1+r,n))/(Math.pow(1+r,n)-1);
-      $('#m-result').innerText="ค่างวดต่อเดือน: "+pay.toFixed(0).toLocaleString()+" บาท";
-    }
+  <!-- Contact -->
+  <section id="contact"><h2>ติดต่อเรา</h2><form class="contact-form" action="mailto:example@email.com" method="post" enctype="text/plain"><input type="text" name="name" placeholder="ชื่อ"><input type="email" name="email" placeholder="อีเมล"><textarea name="msg" rows="5" placeholder="ข้อความ"></textarea><button type="submit">ส่งข้อความ</button></form></section>
+</div>
 
-    // ===== Lightbox Functions =====
-    let currentGallery=[],currentIndex=0;
-    function openLightbox(gallery,index){
-      currentGallery=gallery; currentIndex=index;
-      $('#lightbox').style.display='flex';
-      updateLightbox();
-    }
-    function closeLightbox(){
-      $('#lightbox').style.display='none';
-    }
-    function updateLightbox(){
-      $('#lightbox-img').src=currentGallery[currentIndex].img;
-    }
-    function prevImage(){
-      currentIndex=(currentIndex-1+currentGallery.length)%currentGallery.length;
-      updateLightbox();
-    }
-    function nextImage(){
-      currentIndex=(currentIndex+1)%currentGallery.length;
-      updateLightbox();
-    }
-  </script>
+<script>
+const $=s=>document.querySelector(s);
+
+const projects=[
+ {id:'A',name:'บ้านในฝัน A',category:'บ้านเดี่ยว',price:3500000,type:'บ้านเดี่ยว 2 ชั้น',lot:'60 ตร.ว.',area:'180 ตร.ม.',rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน',highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'],img:'https://picsum.photos/seed/h1/900/500',phone:'089-123-4567',line:'@sukjaivilla',gallery:[{title:'รูปบ้านภายนอก',img:'https://picsum.photos/seed/g1/600/400'},{title:'ห้องนั่งเล่น/ครัว',img:'https://picsum.photos/seed/g2/600/400'},{title:'ห้องนอน',img:'https://picsum.photos/seed/g3/600/400'},{title:'แปลนบ้าน',img:'https://picsum.photos/seed/g4/600/400'}]},
+ {id:'B',name:'ทาวน์โฮม B',category:'ทาวน์โฮม',price:2500000,type:'ทาวน์โฮม 2 ชั้น',lot:'20 ตร.ว.',area:'120 ตร.ม.',rooms:'2 ห้องนอน | 2 ห้องน้ำ',highlights:['เหมาะกับครอบครัวเล็ก','ทำเลใกล้ตลาด','ราคาประหยัด'],img:'https://picsum.photos/seed/t1/900/500',phone:'089-234-5678',line:'@townhome',gallery:[{title:'หน้าบ้าน',img:'https://picsum.photos/seed/tg1/600/400'},{title:'ห้องรับแขก',img:'https://picsum.photos/seed/tg2/600/400'},{title:'ห้องนอน',img:'https://picsum.photos/seed/tg3/600/400'},{title:'แปลน',img:'https://picsum.photos/seed/tg4/600/400'}]}
+];
+
+function renderProjects(list){$('#carousel').innerHTML='';list.forEach(p=>{const card=document.createElement('div');card.className='project-card';card.innerHTML=`<img src="${p.img}" alt="${p.name}"><div class="info"><h3>${p.name}</h3><p>${p.type}</p><button onclick="openProject('${p.id}')">ดูรายละเอียด</button></div>`;$('#carousel').appendChild(card)});}
+function filterCategory(cat){if(cat==='ทั้งหมด'){renderProjects(projects)}else{renderProjects(projects.filter(p=>p.category===cat))}}
+
+let currentProject=null,currentIndex=0;
+function openProject(id){
+  const p=projects.find(x=>x.id===id); if(!p)return;
+  currentProject=p; $('#project-detail').style.display='block';
+  $('#detail-info').innerHTML=`<p><strong>ประเภท:</strong> ${p.type}</p><p><strong>ที่ดิน:</strong> ${p.lot}</p><p><strong>พื้นที่ใช้สอย:</strong> ${p.area}</p><p><strong>ห้อง:</strong> ${p.rooms}</p>`;
+  $('#detail-highlights').innerHTML=p.highlights.map(h=>`<li>${h}</li>`).join('');
+  $('#detail-price').textContent=`${p.price.toLocaleString()} บาท`;
+  $('#contact-btn').onclick=()=>window.open(`tel:${p.phone}`);
+  const g=$('#detail-gallery');g.innerHTML='';p.gallery.forEach((gi,i)=>{const el=document.createElement('div');el.className='gallery-item';el.innerHTML=`<img src="${gi.img}" alt="${gi.title}"><div>${gi.title}</div>`;el.addEventListener('click',()=>openLightbox(i));g.appendChild(el)});
+  window.scrollTo({top:$('#project-detail').offsetTop-70,behavior:'smooth'});
+}
+
+function calcMortgage(){const L=parseFloat($('#loan').value),r=parseFloat($('#rate').value)/100/12,n=parseFloat($('#years').value)*12;if(!L||!r||!n){$('#result').textContent="กรอกข้อมูลให้ครบ";return}const pay=L*r*Math.pow(1+r,n)/(Math.pow(1+r,n)-1);$('#result').textContent="ผ่อนต่อเดือน: "+pay.toFixed(0)+" บาท";}
+
+// ===== Lightbox functions =====
+function openLightbox(i){currentIndex=i;updateLightbox();$('#lightbox').style.display='flex'}
+function updateLightbox(){if(currentProject && currentProject.gallery[currentIndex]){$('#lightbox-img').src=currentProject.gallery[currentIndex].img}}
+function prevImage(){if(!currentProject)return;currentIndex=(currentIndex-1+currentProject.gallery.length)%currentProject.gallery.length;updateLightbox()}
+function nextImage(){if(!currentProject)return;currentIndex=(currentIndex+1)%currentProject.gallery.length;updateLightbox()}
+function closeLightbox(){$('#lightbox').style.display='none'}
+
+renderProjects(projects);
+</script>
 </body>
 </html>
