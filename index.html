@@ -1,381 +1,101 @@
 <!DOCTYPE html>
 <html lang="th">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>บ้านในฝันของคุณ — ตัวอย่าง</title>
+  <meta charset="UTF-8">
+  <title>เว็บไซต์ขายบ้าน</title>
   <style>
-    :root{--green:#2E8B57; --green-dark:#218a55; --maxw:1100px; --radius:12px}
-    *{box-sizing:border-box}
-    body{font-family: "Noto Sans", sans-serif; margin:0; color:#123; background:#fafafa}
-    .container{max-width:var(--maxw); margin:0 auto; padding:0 18px}
-
-    /* ===== Header with big background image (like original) ===== */
-    header.hero{height:320px; background-size:cover; background-position:center; position:relative;}
-    header.hero::after{content:""; position:absolute; inset:0; background:linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.45));}
-    .hero-inner{position:relative; z-index:2; height:100%; display:flex; align-items:center; justify-content:center; flex-direction:column}
-    .hero-title{color:#fff; font-size:44px; font-weight:800; text-shadow:0 6px 18px rgba(0,0,0,0.45); margin:0}
-
-    /* green nav bar under hero (flat like screenshot) */
-    nav.topnav{background:var(--green);}
-    nav.topnav .container{padding:0}
-    nav.topnav ul{list-style:none; margin:0; padding:12px 18px; display:flex; gap:18px; align-items:center}
-    nav.topnav a{color:#fff; text-decoration:none; font-weight:700}
-
-    /* Main content area */
-    main{padding:18px 0}
-
-    /* Category buttons (4) under nav */
-    .cat-row{display:flex; gap:12px; margin-top:14px;}
-    .cat{flex:1; background:#f3f9f3; border-radius:10px; padding:14px; text-align:center; cursor:pointer; border:1px solid #e6f4ea}
-    .cat strong{display:block; margin-top:6px}
-    .cat:hover{box-shadow:0 8px 20px rgba(0,0,0,0.06)}
-
-    /* Projects carousel area (horizontal scroll) */
-    .projects-wrap{margin-top:18px}
-    .projects-carousel{display:flex; gap:14px; overflow-x:auto; padding:12px 6px; scroll-snap-type:x mandatory}
-    .projects-carousel::-webkit-scrollbar{height:10px}
-    .projects-carousel::-webkit-scrollbar-thumb{background:#dfefde; border-radius:8px}
-    .project-card{flex:0 0 420px; background:#fff; border-radius:12px; overflow:hidden; box-shadow:0 6px 18px rgba(0,0,0,.06); scroll-snap-align:start}
-    .project-card img{width:100%; height:220px; object-fit:cover}
-    .project-body{padding:14px}
-    .project-title{font-size:20px; margin:0 0 6px}
-    .project-desc{color:#4a654f}
-    .project-price{margin-top:10px; font-weight:800; color:var(--green-dark)}
-    .project-btn{margin-top:12px}
-
-    /* Detail page boxes styled like your screenshot */
-    .detail{display:none}
-    .detail .box{border-radius:10px; padding:14px; margin-bottom:12px}
-    .box.info{background:#eaf6ff;}
-    .box.highlights{background:#f2fff6}
-    .box.price{background:linear-gradient(90deg,#fff2fb,#fbe9ff)}
-    .box.contact{background:linear-gradient(90deg,#2b9cf6,#7b48ff); color:#fff}
-
-    .info-row{display:flex; gap:12px; align-items:center}
-    .info-item{flex:1}
-
-    /* small responsive adjustments */
-    @media(max-width:900px){
-      .project-card{flex:0 0 340px}
-      .hero-title{font-size:34px}
-      .cat-row{flex-direction:row}
+    body { 
+      font-family: sans-serif; 
+      margin: 0; 
+      padding: 0; 
     }
-    @media(max-width:520px){
-      header.hero{height:220px}
-      .project-card{flex:0 0 85%}
-      .cat-row{flex-direction:column}
+    header, footer {
+      background-color: #2E8B57; /* เขียวเข้ม */
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+    header img {
+      height: 60px;
+      vertical-align: middle;
+    }
+    nav {
+      margin-top: 10px;
+    }
+    nav a {
+      display: inline-block;
+      margin: 0 10px;
+      padding: 8px 16px;
+      background-color: white;
+      color: #2E8B57;
+      border-radius: 5px;
+      text-decoration: none;
+      font-weight: bold;
+      transition: background 0.3s, color 0.3s;
+    }
+    nav a:hover {
+      background-color: #145a32;
+      color: white;
+    }
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+    .house-card {
+      border: 1px solid #ccc;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 400px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .house-card img {
+      max-width: 100%;
+      border-radius: 10px;
     }
   </style>
 </head>
 <body>
-  <!-- Header: change background-image URL below to your hero image -->
-  <header class="hero" style="background-image:url('https://picsum.photos/seed/hero/1600/900')">
-    <div class="hero-inner container">
-      <h1 class="hero-title">บ้านในฝันของคุณ</h1>
-    </div>
+
+  <!-- ส่วนหัว -->
+  <header>
+    <img src="https://cdn-icons-png.flaticon.com/512/69/69524.png" alt="โลโก้บ้าน">
+    <h1>เว็บไซต์ขายบ้าน</h1>
+    <nav>
+      <a href="#home">หน้าแรก</a>
+      <a href="#about">เกี่ยวกับ</a>
+      <a href="#contact">ติดต่อ</a>
+    </nav>
   </header>
 
-  <!-- green nav bar like original -->
-  <nav class="topnav">
-    <div class="container">
-      <ul>
-        <li><a href="#" data-target="home" class="nav-link">หน้าหลัก</a></li>
-        <li><a href="#" data-target="details" class="nav-link">รายละเอียด</a></li>
-        <li><a href="#" data-target="calculator" class="nav-link">คำนวณดอกเบี้ย</a></li>
-        <li><a href="#" data-target="contact" class="nav-link">ติดต่อเรา</a></li>
-      </ul>
-    </div>
-  </nav>
-
-  <main class="container">
-    <!-- HOME -->
-    <section id="home" class="home-section">
-      <!-- Category row (4 ช่อง) -->
-      <div class="cat-row">
-        <div class="cat" data-cat="บ้านเดี่ยว">🏠<strong>บ้านเดี่ยว</strong></div>
-        <div class="cat" data-cat="ทาวน์โฮม">🏘️<strong>ทาวน์โฮม</strong></div>
-        <div class="cat" data-cat="คอนโด">🏢<strong>คอนโด</strong></div>
-        <div class="cat" data-cat="โครงการใหม่">✨<strong>โครงการใหม่</strong></div>
-      </div>
-
-      <!-- Projects carousel -->
-      <div class="projects-wrap">
-        <h3 style="margin:12px 0 6px">โครงการแนะนำ</h3>
-        <div class="projects-carousel" id="project-list"></div>
+  <!-- เนื้อหาหลัก -->
+  <main>
+    <section id="home">
+      <h2>บ้านแนะนำ</h2>
+      <div class="house-card">
+        <img src="https://picsum.photos/400/250" alt="บ้านตัวอย่าง">
+        <h3>บ้านเดี่ยวสวยหรู</h3>
+        <p>ทำเลทอง ใกล้เมือง 3 ห้องนอน 2 ห้องน้ำ พร้อมสวนกว้าง</p>
+        <p><strong>ราคา: 3,500,000 บาท</strong></p>
       </div>
     </section>
 
-    <!-- DETAILS (single project view) -->
-    <section id="project-detail" class="detail">
-      <button id="back-home" style="background:none;border:none;color:var(--green);font-weight:700;margin-bottom:8px;cursor:pointer">← กลับหน้าหลัก</button>
-
-      <div class="box info">
-        <h3 id="detail-name">ชื่อโครงการ</h3>
-        <div class="info-row">
-          <div class="info-item">
-            <div style="font-weight:700">ข้อมูลบ้าน</div>
-            <div id="detail-type">บ้านเดี่ยว 2 ชั้น ขนาด 60 ตร.ว.</div>
-          </div>
-          <div class="info-item">
-            <div style="font-weight:700">พื้นที่ใช้สอย</div>
-            <div id="detail-area">180 ตร.ม.</div>
-          </div>
-          <div class="info-item">
-            <div style="font-weight:700">ห้อง / ที่จอด</div>
-            <div id="detail-room">3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="box highlights">
-        <h4>✨ จุดเด่น</h4>
-        <ul id="detail-highlights" style="margin:0; padding-left:18px"></ul>
-      </div>
-
-      <div class="box price">
-        <div id="detail-price" style="font-size:26px; font-weight:800; color:#7b3f9a">เพียง 3,500,000 บาท</div>
-        <div style="color:#6b6270; margin-top:6px">(ฟรีค่าโอน + แถมเฟอร์นิเจอร์บางส่วน)</div>
-      </div>
-
-      <div class="box contact">
-        <div style="font-weight:700">📞 ติดต่อเรา</div>
-        <div id="contact-phone" style="margin-top:8px">089-123-4567</div>
-        <div id="contact-line" style="margin-top:6px">Line: @sukjaivilla</div>
-        <a id="contact-action" href="#" style="display:inline-block;margin-top:10px;padding:10px 18px;border-radius:24px;background:#fff;color:#4b2b9e;text-decoration:none;font-weight:700">ติดต่อเลย</a>
-      </div>
-
+    <section id="about">
+      <h2>เกี่ยวกับเรา</h2>
+      <p>เราคือบริษัทอสังหาริมทรัพย์ที่มุ่งมั่นในการหาบ้านที่เหมาะสมสำหรับคุณ</p>
     </section>
 
-    <!-- Optional: calculator and contact sections (kept simple) -->
-    <section id="calculator" style="display:none; margin-top:12px">
-      <div class="box">
-        <h3>คำนวณการผ่อน (ประมาณ)</h3>
-        <form id="mortgage-form" onsubmit="return false;">
-          <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(180px,1fr)); gap:10px; margin-top:10px">
-            <div>
-              <label>ราคารวม (บาท)</label>
-              <input id="calc-price" type="number" value="3200000" min="0" step="1000">
-            </div>
-            <div>
-              <label>เงินดาวน์ (%)</label>
-              <input id="calc-down" type="number" value="10" min="0" max="100" step="1">
-            </div>
-            <div>
-              <label>อัตราดอกเบี้ยต่อปี (%)</label>
-              <input id="calc-rate" type="number" value="5.5" min="0" step="0.01">
-            </div>
-            <div>
-              <label>ระยะเวลา (ปี)</label>
-              <input id="calc-years" type="number" value="30" min="1" step="1">
-            </div>
-          </div>
-          <div style="margin-top:12px">
-            <button id="calc-btn" class="btn" style="background:var(--green);">คำนวณ</button>
-            <button id="calc-reset" class="btn" style="background:#888; margin-left:8px;">รีเซ็ต</button>
-          </div>
-        </form>
-        <div id="calc-result" class="box" style="display:none; margin-top:12px;">
-          <p><strong>จำนวนงวดต่อเดือน:</strong> <span id="months">0</span></p>
-          <p><strong>ยอดผ่อนต่อเดือน (โดยประมาณ):</strong> <span id="monthly">0</span> ฿</p>
-          <p><strong class="small">รวมดอกเบี้ยโดยประมาณ:</strong> <span id="total-interest">0</span> ฿</p>
-        </div>
-        <div style="margin-top:10px; color:#555; font-size:0.9rem">ฟีเจอร์เพิ่ม: คุณสามารถกดปุ่ม "คำนวณด่วน" บนการ์ดแต่ละโครงการเพื่อกรอกราคาอัตโนมัติ และยังบันทึกโครงการที่สนใจไว้ด้วยปุ่มบันทึก</div>
-      </div>
+    <section id="contact">
+      <h2>ติดต่อเรา</h2>
+      <p>โทร: 081-234-5678</p>
+      <p>อีเมล: info@house.com</p>
     </section>
-
-    <section id="contact" style="display:none; margin-top:12px">
-      <div class="box">
-        <h3>ติดต่อเรา</h3>
-        <form id="contact-form" onsubmit="submitContact(event)">
-          <div style="display:grid; gap:8px; max-width:600px">
-            <input id="contact-name" type="text" placeholder="ชื่อ-สกุล" required>
-            <input id="contact-email" type="email" placeholder="อีเมล" required>
-            <input id="contact-phone" type="text" placeholder="เบอร์โทร" required>
-            <textarea id="contact-message" placeholder="ข้อความ" rows="4" required></textarea>
-            <div>
-              <button class="btn" type="submit" style="background:var(--green);">ส่งข้อความ</button>
-              <button id="contact-cancel" class="btn" style="background:#888; margin-left:8px;">ยกเลิก</button>
-            </div>
-          </div>
-        </form>
-      </div>
-    </section>
-
-    <section id="contact" style="display:none; margin-top:12px">
-      <div class="box">
-        <h3>ติดต่อเรา</h3>
-        <p>อีเมล: your@email.com</p>
-      </div>
-    </section>
-
-    <footer style="margin-top:18px; padding:12px 0; text-align:center">© 2025 — ใส่ข้อมูลเจ้าของ</footer>
   </main>
 
-  <script>
-    // Utility
-    const $ = (s) => document.querySelector(s);
-    const $all = (s) => Array.from(document.querySelectorAll(s));
+  <!-- ส่วนท้าย -->
+  <footer>
+    <p>© 2025 เว็บไซต์ขายบ้าน</p>
+  </footer>
 
-    // Categories and projects (same as before)
-    const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
-    const projects = [
-      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://picsum.photos/seed/h1/900/500', phone:'089-123-4567', line:'@sukjaivilla'},
-      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop'},
-      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://picsum.photos/seed/h3/900/500', phone:'090-111-2222', line:'@condo_sukjai'},
-      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://picsum.photos/seed/h4/900/500', phone:'082-222-3333', line:'@newproject'}
-    ];
-
-    // Favorites stored in localStorage
-    function getFavorites(){
-      try{ return JSON.parse(localStorage.getItem('fav_projects')||'[]'); }catch(e){return []}
-    }
-    function saveFavorites(arr){ localStorage.setItem('fav_projects', JSON.stringify(arr)); }
-
-    // render categories (click to filter)
-    function setupCategoryButtons(){
-      const cats = document.querySelectorAll('.cat');
-      cats.forEach(btn=>{
-        btn.addEventListener('click', ()=>{
-          $all('.cat').forEach(c=>c.classList.remove('active'));
-          btn.classList.add('active');
-          const cat = btn.getAttribute('data-cat');
-          renderProjects(cat);
-          document.querySelector('.projects-wrap').scrollIntoView({behavior:'smooth'});
-        });
-      });
-      const first = document.querySelector('.cat'); if(first) first.classList.add('active');
-    }
-
-    // render project cards
-    function renderProjects(category=null){
-      const wrap = $('#project-list'); if(!wrap) return;
-      wrap.innerHTML = '';
-      const list = category ? projects.filter(p=>p.category===category) : projects;
-      if(list.length===0){ wrap.innerHTML = '<div style="padding:18px;color:#666">ไม่มีโครงการในหมวดนี้</div>'; return; }
-      const favs = getFavorites();
-      list.forEach(p=>{
-        const el = document.createElement('div'); el.className='project-card';
-        const isFav = favs.includes(p.id);
-        el.innerHTML = `
-          <img src="${p.img}" alt="${p.name}">
-          <div class="project-body">
-            <div class="project-title">${p.name}</div>
-            <div class="project-desc">${p.type} • ${p.lot}</div>
-            <div class="project-price">${p.price.toLocaleString('th-TH')} ฿</div>
-            <div style="display:flex; gap:8px; margin-top:10px">
-              <button class="btn btn-open" data-id="${p.id}" style="background:var(--green);">ดูรายละเอียด</button>
-              <button class="btn btn-quick" data-price="${p.price}" style="background:#6c757d">คำนวณด่วน</button>
-              <button class="btn btn-fav" data-id="${p.id}" style="background:${isFav?'#ffb3c6':'#ffd'}">${isFav?'บันทึกแล้ว':'บันทึก'}</button>
-            </div>
-          </div>`;
-        wrap.appendChild(el);
-      });
-
-      // attach events
-      $all('.btn-open').forEach(b=>b.addEventListener('click', ()=>openProject(b.getAttribute('data-id'))));
-      $all('.btn-quick').forEach(b=>b.addEventListener('click', ()=>{
-        const price = Number(b.getAttribute('data-price'))||0;
-        $('#calc-price').value = price; // prefill calculator
-        showSection('calculator');
-        // smooth scroll to calculator
-        setTimeout(()=>document.getElementById('calc-price').scrollIntoView({behavior:'smooth'}),200);
-      }));
-      $all('.btn-fav').forEach(b=>b.addEventListener('click', ()=>{
-        const id = b.getAttribute('data-id');
-        toggleFavorite(id, b);
-      }));
-    }
-
-    function toggleFavorite(id, btnEl){
-      const favs = getFavorites();
-      const idx = favs.indexOf(id);
-      if(idx===-1){ favs.push(id); btnEl.textContent='บันทึกแล้ว'; btnEl.style.background='#ffb3c6'; }
-      else{ favs.splice(idx,1); btnEl.textContent='บันทึก'; btnEl.style.background='#ffd'; }
-      saveFavorites(favs);
-    }
-
-    // show/hide sections and manage nav active state
-    function showSection(name){
-      // hide detail if showing
-      const detail = document.getElementById('project-detail');
-      if(detail) detail.style.display = 'none';
-      // sections: home, calculator, contact
-      const sections = { home: document.querySelector('.home-section'), calculator: $('#calculator'), contact: $('#contact') };
-      Object.values(sections).forEach(s=>{ if(s) s.style.display='none'; });
-      if(sections[name]) sections[name].style.display = 'block';
-      // nav active
-      $all('.nav-link').forEach(a=>a.classList.remove('active'));
-      const nav = $all('.nav-link').find(a=>a.dataset.target===name);
-      if(nav) nav.classList.add('active');
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    // open project detail
-    function openProject(id){
-      const p = projects.find(x=>x.id===id); if(!p) return;
-      $('#detail-name').textContent = p.name; $('#detail-type').textContent = p.type + ' ขนาด ' + p.lot; $('#detail-area').textContent = p.area; $('#detail-room').textContent = p.rooms; $('#detail-price').textContent = 'เพียง ' + p.price.toLocaleString('th-TH') + ' บาท';
-      const ul = $('#detail-highlights'); ul.innerHTML=''; if(Array.isArray(p.highlights)) p.highlights.forEach(h=>{ const li=document.createElement('li'); li.textContent=h; ul.appendChild(li);});
-      $('#contact-phone').textContent = p.phone || ''; $('#contact-line').textContent = 'Line: ' + (p.line || '—');
-      // contact action -> mailto
-      const subject = encodeURIComponent('สนใจโครงการ: ' + p.name);
-      const body = encodeURIComponent('สวัสดีครับ/ค่ะ\n\nผม/ฉันสนใจ ' + p.name + ' (ราคา ' + p.price.toLocaleString('th-TH') + ' บาท)\nกรุณาติดต่อกลับที่เบอร์นี้: ' + (p.phone||''));
-      $('#contact-action').href = 'mailto:youremail@example.com?subject=' + subject + '&body=' + body; // change if needed
-      document.getElementById('project-detail').style.display = 'block';
-      window.scrollTo({top:0, behavior:'smooth'});
-    }
-
-    // mortgage calculator logic
-    function formatNumber(n){ return n.toLocaleString('th-TH'); }
-    function calculateMortgage(){
-      const price = Number($('#calc-price').value) || 0;
-      const downPct = Number($('#calc-down').value) || 0;
-      const ratePct = Number($('#calc-rate').value) || 0;
-      const years = Number($('#calc-years').value) || 0;
-      const down = price * (downPct/100);
-      const principal = price - down;
-      const monthlyRate = (ratePct/100)/12;
-      const n = years*12;
-      let monthly = 0;
-      if(n===0) return;
-      if(monthlyRate === 0) monthly = principal / n;
-      else{ const pow = Math.pow(1+monthlyRate, n); monthly = principal * (monthlyRate * pow) / (pow - 1); }
-      const totalPaid = monthly * n; const totalInterest = totalPaid - principal;
-      $('#months').textContent = n; $('#monthly').textContent = formatNumber(Math.round(monthly)); $('#total-interest').textContent = formatNumber(Math.round(totalInterest));
-      $('#calc-result').style.display = 'block';
-    }
-
-    // contact form submit (mailto fallback)
-    function submitContact(e){
-      e.preventDefault();
-      const name = $('#contact-name').value.trim(); const email = $('#contact-email').value.trim(); const phone = $('#contact-phone').value.trim(); const message = $('#contact-message').value.trim();
-      if(!name||!email||!phone||!message){ alert('กรุณากรอกข้อมูลให้ครบ'); return; }
-      const subject = encodeURIComponent('สอบถามโครงการจากเว็บ');
-      const body = encodeURIComponent('ชื่อ: '+name+'\nอีเมล: '+email+'\nเบอร์: '+phone+'\n\n'+message);
-      window.location.href = 'mailto:youremail@example.com?subject=' + subject + '&body=' + body; // change email here
-    }
-
-    // nav links
-    function setupNav(){
-      $all('.nav-link').forEach(a=>{
-        a.addEventListener('click', (e)=>{
-          e.preventDefault(); const t=a.dataset.target; if(t==='home') showSection('home'); else if(t==='calculator') showSection('calculator'); else if(t==='contact') showSection('contact'); else if(t==='details') { /* do nothing / or show sample */ }
-        });
-      });
-    }
-
-    // init
-    document.addEventListener('DOMContentLoaded', ()=>{
-      setupCategoryButtons(); renderProjects(categories[0]); setupNav();
-
-      // calculator events
-      $('#calc-btn').addEventListener('click', (e)=>{ e.preventDefault(); calculateMortgage(); });
-      $('#calc-reset').addEventListener('click', (e)=>{ e.preventDefault(); $('#calc-price').value=3200000; $('#calc-down').value=10; $('#calc-rate').value=5.5; $('#calc-years').value=30; $('#calc-result').style.display='none'; });
-
-      // contact form
-      $('#contact-form').addEventListener('submit', submitContact);
-      $('#contact-cancel').addEventListener('click', (e)=>{ e.preventDefault(); showSection('home'); });
-    });
-  </script>
 </body>
 </html>
