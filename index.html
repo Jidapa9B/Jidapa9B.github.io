@@ -78,6 +78,33 @@
       .project-card{flex:0 0 85%}
       .cat-row{flex-direction:column}
     }
+
+    /* ===== (ใหม่) แกลเลอรี่ 2x2 ในหน้ารายละเอียด ===== */
+    .box.gallery{background:linear-gradient(180deg,#f8fbff,#f7fffb)}
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+      gap:12px;
+      margin-top:10px;
+    }
+    .gallery-item{
+      border-radius:12px;
+      padding:22px 16px;
+      text-align:center;
+      font-weight:700;
+      color:#234;
+      cursor:pointer;
+      background:var(--bg, #eef5ff);
+      border:1px solid rgba(0,0,0,0.04);
+      transition:transform .2s ease, box-shadow .2s ease;
+      user-select:none;
+    }
+    .gallery-item:hover{ transform:translateY(-3px); box-shadow:0 8px 18px rgba(0,0,0,0.08); }
+    .gallery-item img{
+      width:56px; height:56px; object-fit:cover; border-radius:8px; margin-bottom:10px;
+      box-shadow:0 4px 10px rgba(0,0,0,0.08);
+    }
+    .gallery-item .title{opacity:.9}
   </style>
 </head>
 <body>
@@ -143,6 +170,12 @@
       <div class="box highlights">
         <h4>✨ จุดเด่น</h4>
         <ul id="detail-highlights" style="margin:0; padding-left:18px"></ul>
+      </div>
+
+      <!-- (ใหม่) กล่องแกลเลอรี่แบบ 2x2 -->
+      <div class="box gallery">
+        <h4>📷 แกลเลอรี่</h4>
+        <div class="gallery-grid" id="detail-gallery"></div>
       </div>
 
       <div class="box price">
@@ -224,13 +257,41 @@
     const $ = (s) => document.querySelector(s);
     const $all = (s) => Array.from(document.querySelectorAll(s));
 
-    // Categories and projects (same as before)
+    // Categories and projects (same as before) + (เพิ่ม) gallery ให้แต่ละโปรเจค
     const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
     const projects = [
-      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://picsum.photos/seed/h1/900/500', phone:'089-123-4567', line:'@sukjaivilla'},
-      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop'},
-      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://picsum.photos/seed/h3/900/500', phone:'090-111-2222', line:'@condo_sukjai'},
-      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://picsum.photos/seed/h4/900/500', phone:'082-222-3333', line:'@newproject'}
+      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://picsum.photos/seed/h1/900/500', phone:'089-123-4567', line:'@sukjaivilla',
+        gallery:[
+          {title:'รูปบ้านภายนอก', img:'https://picsum.photos/seed/a1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/a2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+          {title:'รูปห้องนอน', img:'https://picsum.photos/seed/a3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+          {title:'แปลนบ้านเล็ก ๆ', img:'https://picsum.photos/seed/a4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+        ]
+      },
+      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop',
+        gallery:[
+          {title:'หน้าบ้าน/ที่จอด', img:'https://picsum.photos/seed/b1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+          {title:'ห้องนั่งเล่น', img:'https://picsum.photos/seed/b2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+          {title:'ห้องนอนหลัก', img:'https://picsum.photos/seed/b3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+          {title:'แปลนทาวน์โฮม', img:'https://picsum.photos/seed/b4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+        ]
+      },
+      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://picsum.photos/seed/h3/900/500', phone:'090-111-2222', line:'@condo_sukjai',
+        gallery:[
+          {title:'ภาพตึก/ส่วนกลาง', img:'https://picsum.photos/seed/c1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+          {title:'ห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/c2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+          {title:'ห้องนอน', img:'https://picsum.photos/seed/c3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+          {title:'ผังห้อง', img:'https://picsum.photos/seed/c4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+        ]
+      },
+      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://picsum.photos/seed/h4/900/500', phone:'082-222-3333', line:'@newproject',
+        gallery:[
+          {title:'ภายนอกโครงการ', img:'https://picsum.photos/seed/d1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+          {title:'โถง/ห้องนั่งเล่น', img:'https://picsum.photos/seed/d2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+          {title:'ห้องนอนมาสเตอร์', img:'https://picsum.photos/seed/d3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+          {title:'Floor Plan', img:'https://picsum.photos/seed/d4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+        ]
+      }
     ];
 
     // Track last viewed project for "รายละเอียด" nav
@@ -318,6 +379,27 @@
       const subject = encodeURIComponent('สนใจโครงการ: ' + p.name);
       const body = encodeURIComponent('สวัสดีครับ/ค่ะ\n\nผม/ฉันสนใจ ' + p.name + ' (ราคา ' + p.price.toLocaleString('th-TH') + ' บาท)\nกรุณาติดต่อกลับที่เบอร์นี้: ' + (p.phone||''));
       $('#contact-action').href = 'mailto:youremail@example.com?subject=' + subject + '&body=' + body; // change if needed
+
+      // (ใหม่) render แกลเลอรี่
+      const gwrap = $('#detail-gallery');
+      if(gwrap){
+        gwrap.innerHTML = '';
+        if(Array.isArray(p.gallery) && p.gallery.length){
+          p.gallery.forEach(g=>{
+            const card = document.createElement('div');
+            card.className = 'gallery-item';
+            if(g.bg) card.style.setProperty('--bg', g.bg);
+            card.innerHTML = `
+              <img src="${g.img}" alt="${g.title}">
+              <div class="title">${g.title}</div>`;
+            card.addEventListener('click', ()=> window.open(g.img, '_blank'));
+            gwrap.appendChild(card);
+          });
+        }else{
+          gwrap.innerHTML = '<div style="color:#567">ไม่มีภาพแกลเลอรี่สำหรับโครงการนี้</div>';
+        }
+      }
+
       document.getElementById('project-detail').style.display = 'block';
 
       // set nav active to "รายละเอียด"
