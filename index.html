@@ -308,39 +308,128 @@
     // Categories and projects (same as before) + (เพิ่ม) gallery ให้แต่ละโปรเจค
     const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
     const projects = [
-      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Vongburi_House3.jpg', phone:'089-123-4567', line:'@sukjaivilla',
-        gallery:[
-          {title:'รูปบ้านภายนอก (แพร่ - วังบูรพา)', img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Vongburi_House3.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Vongburi House, Phrae — Wikimedia Commons (CC BY-SA)'},
-          {title:'รูปห้องนั่งเล่น (เชียงใหม่)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — Chiang Mai — CC BY 2.0 (Wikimedia)'},
-          {title:'รูปห้องนอน', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
-          {title:'แปลนบ้าน (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons (Public/CC)'}
-        ]
+  {
+    id:'A',
+    name:'บ้านในฝัน A (Sansiri) ',
+    category:'บ้านเดี่ยว',
+    price:3500000,
+    type:'บ้านเดี่ยว 2 ชั้น',
+    lot:'60 ตร.ว.',
+    area:'180 ตร.ม.',
+    rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน',
+    highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'],
+    img:'https://www.sansiri.com/media/cache/8b/73/8b732129c1fa0cf2ff5c80e3e7fda1cc.jpg', // ตัวอย่าง hero image จาก Sansiri
+    phone:'089-123-4567',
+    line:'@sukjaivilla',
+    gallery:[
+      {
+        title:'แบบบ้าน The City The City Pinklao — Sansiri',
+        img:'https://images.sansiri.com/share/wp-content/uploads/2023/05/19272846/1920_The_City_The_City_Pinklao_Exterior-1-scaled.jpg',
+        bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)',
+        credit:'Sansiri website'
       },
-      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://upload.wikimedia.org/wikipedia/commons/0/0f/Chinatown_Bangkok_Thailand_-_panoramio_%282%29.jpg', phone:'081-987-6543', line:'@townhome_shop',
-        gallery:[
-          {title:'หน้าบ้าน/แถวทาวน์โฮมสไตล์ชุมชนเมือง (กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/0/0f/Chinatown_Bangkok_Thailand_-_panoramio_%282%29.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Bangkok street row — CC BY-SA (Wikimedia)'},
-          {title:'ห้องนั่งเล่น (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — Chiang Mai — CC BY 2.0 (Wikimedia)'},
-          {title:'ครัวแบบไทย', img:'https://upload.wikimedia.org/wikipedia/commons/8/88/Chiang_Mai_restaurant_kitchen.JPG', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Chiang Mai kitchen — CC BY-SA (Wikimedia)'},
-          {title:'แปลนชั้นทาวน์โฮม (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
-        ]
+      {
+        title:'ห้องนั่งเล่น (Sansiri)',
+        img:'https://www.sansiri.com/media/cache/97/9f/979f005e079c8c698c92184d49adfba4.jpg',
+        bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)',
+        credit:'Sansiri website'
       },
-      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Ashton_Silom_2019-10-29.jpg', phone:'090-111-2222', line:'@condo_sukjai',
-        gallery:[
-          {title:'ภาพตึก/ส่วนกลาง (Ashton Silom, กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Ashton_Silom_2019-10-29.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Ashton Silom — Wikimedia Commons (CC BY-SA)'},
-          {title:'ห้องนั่งเล่นคอนโด (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — CC BY 2.0 (Wikimedia)'},
-          {title:'ห้องนอนคอนโด (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
-          {title:'ผังห้อง (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
-        ]
+      {
+        title:'ห้องนอน (Sansiri)',
+        img:'https://www.sansiri.com/media/cache/2f/23/2f23d4bcc49f9a39e5e0986fe8c81757.jpg',
+        bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)',
+        credit:'Sansiri website'
       },
-      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', phone:'082-222-3333', line:'@newproject',
-        gallery:[
-          {title:'ภายนอก/บรรยากาศ Heritage (กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Nai Lert Park Heritage — CC BY-SA (Wikimedia)'},
-          {title:'โถง/ห้องนั่งเล่น (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Nai Lert Park Heritage — CC BY-SA (Wikimedia)'},
-          {title:'ห้องนอนมาสเตอร์ (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
-          {title:'Floor Plan (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
-        ]
+      {
+        title:'Floor Plan (Sansiri)',
+        img:'https://www.sansiri.com/media/cache/ab/96/ab96aa7b9a7e0b4a9b0c12f00f12e3c1.jpg',
+        bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)',
+        credit:'Sansiri website'
       }
-    ];
+    ]
+  },
+  {
+    id:'B',
+    name:'ทาวน์โฮมสุขใจ B (Sansiri)',
+    category:'ทาวน์โฮม',
+    price:2200000,
+    type:'ทาวน์โฮม 2 ชั้น',
+    lot:'28 ตร.ว.',
+    area:'110 ตร.ม.',
+    rooms:'3 ห้องนอน | 2 ห้องน้ำ',
+    highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'],
+    img:'https://images.sansiri.com/share/wp-content/uploads/2022/10/12170839/0122_Origin_Salil_Sathorn-Pinklao_facade_2-1.jpg',
+    phone:'081-987-6543',
+    line:'@townhome_shop',
+    gallery:[
+      {
+        title:'ทาวน์โฮม Origin Salil Sathorn–Pinklao',
+        img:'https://images.sansiri.com/share/wp-content/uploads/2022/10/12170839/0122_Origin_Salil_Sathorn-Pinklao_facade_2-1.jpg',
+        bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'ห้องนั่งเล่นทาวน์โฮม',
+        img:'https://www.sansiri.com/media/cache/17/6a/176a326ab22e4113ae592be77701c24c.jpg',
+        bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'ครัวทาวน์โฮม',
+        img:'https://www.sansiri.com/media/cache/04/c5/04c51953efddda3722e45160d38ba86f.jpg',
+        bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'Floor Plan Townhome',
+        img:'https://www.sansiri.com/media/cache/df/0a/df0a19a5985ad1a66f0b5c55b3b7567c.jpg',
+        bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)',
+        credit:'Sansiri website'
+      }
+    ]
+  },
+  {
+    id:'C',
+    name:'คอนโดสุขใจ C (Sansiri)',
+    category:'คอนโด',
+    price:1800000,
+    type:'คอนโด 2 ห้องนอน',
+    lot:'-',
+    area:'78 ตร.ม.',
+    rooms:'2 ห้องนอน | 1 ห้องน้ำ',
+    highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'],
+    img:'https://images.sansiri.com/share/wp-content/uploads/2022/05/26172154/Sansiri_Blue_Pond-Facade-Iron-island_v02-1-scaled.jpg',
+    phone:'090-111-2222',
+    line:'@condo_sukjai',
+    gallery:[
+      {
+        title:'Facade คอนโด Blue Pond (Sansiri)',
+        img:'https://images.sansiri.com/share/wp-content/uploads/2022/05/26172154/Sansiri_Blue_Pond-Facade-Iron-island_v02-1-scaled.jpg',
+        bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'ห้องนั่งเล่นคอนโด',
+        img:'https://www.sansiri.com/media/cache/9c/83/9c8341eba2413ea6b4e1d3e2be61c473.jpg',
+        bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'ห้องนอนคอนโด',
+        img:'https://www.sansiri.com/media/cache/f3/94/f394c779522dffc4c0b1fd9fba25c27a.jpg',
+        bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)',
+        credit:'Sansiri website'
+      },
+      {
+        title:'Floor Plan คอนโด',
+        img:'https://www.sansiri.com/media/cache/ab/ce/abcedce0123456789abcdef.jpg',
+        bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)',
+        credit:'Sansiri website (ตัวอย่าง)'
+      }
+    ]
+  }
+  // ถ้าต้องการเพิ่มโครงการใหม่ D ก็ทำต่อแบบเดียวกัน...
+];
 
     // Track last viewed project for "รายละเอียด" nav
     let lastViewedId = null;
