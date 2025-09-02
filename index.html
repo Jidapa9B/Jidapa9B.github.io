@@ -279,15 +279,15 @@
         <div class="info-row">
           <div class="info-item">
             <div style="font-weight:700">ข้อมูลบ้าน</div>
-            <div id="detail-type">บ้านเดี่ยว 2 ชั้น ขนาด 60 ตร.ว.</div>
+            <div id="detail-type">บ้านเดี่ยว 2 ชั้น ขนาด 200 ตร.ว.</div>
           </div>
           <div class="info-item">
             <div style="font-weight:700">พื้นที่ใช้สอย</div>
-            <div id="detail-area">180 ตร.ม.</div>
+            <div id="detail-area">200 ตร.ม.</div>
           </div>
           <div class="info-item">
             <div style="font-weight:700">ห้อง / ที่จอด</div>
-            <div id="detail-room">3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน</div>
+            <div id="detail-room">4 ห้องนอน | 3 ห้องน้ำ | ที่จอด 2 คัน</div>
           </div>
         </div>
       </div>
@@ -304,7 +304,7 @@
       </div>
 
       <div class="box price">
-        <div id="detail-price" style="font-size:26px; font-weight:800; color:#7b3f9a">เพียง 3,500,000 บาท</div>
+        <div id="detail-price" style="font-size:26px; font-weight:800; color:#7b3f9a">เพียง 7,290,000 บาท</div>
         <div style="color:#6b6270; margin-top:6px">(ฟรีค่าโอน + แถมเฟอร์นิเจอร์บางส่วน)</div>
       </div>
 
@@ -385,15 +385,15 @@
     // Categories and projects (same as before) + (เพิ่ม) gallery ให้แต่ละโปรเจค
     const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
     const projects = [
-      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://picsum.photos/seed/h1/900/500', phone:'089-123-4567', line:'@phirom',
+      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:7,290,000, type:'บ้านเดี่ยว 2 ชั้น', lot:'200 ตร.ว.', area:'200 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน ','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://th1-cdn.pgimgs.com/project-listing-project/11708694/PLPHO.126426104.V800/Saransiri-Ratchapruek-345-%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%8D%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-345-%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%A3%E0%B9%87%E0%B8%94-Thailand.jpg', phone:'089-123-4567', line:'@phiromhome',
         gallery:[
-          {title:'รูปบ้านภายนอก', img:'https://picsum.photos/seed/a1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/a2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'รูปห้องนอน', img:'https://picsum.photos/seed/a3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'แปลนบ้านเล็ก ๆ', img:'https://picsum.photos/seed/a4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+          {title:'รูปบ้านภายนอก', img:'https://th1-cdn.pgimgs.com/project-listing-project/11708694/PLPHO.126426101.V800/Saransiri-Ratchapruek-345-%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%8D%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-345-%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%A3%E0%B9%87%E0%B8%94-Thailand.jpg'},
+          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://th1-cdn.pgimgs.com/project-listing-project/11708694/PLPHO.126426093.V800/Saransiri-Ratchapruek-345-%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%8D%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-345-%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%A3%E0%B9%87%E0%B8%94-Thailand.jpg'},
+          {title:'รูปห้องนอน', img:'https://th1-cdn.pgimgs.com/project-listing-project/11708694/PLPHO.126426097.V800/Saransiri-Ratchapruek-345-%E0%B8%AA%E0%B8%A3%E0%B8%B2%E0%B8%8D%E0%B8%AA%E0%B8%B4%E0%B8%A3%E0%B8%B4-%E0%B8%A3%E0%B8%B2%E0%B8%8A%E0%B8%9E%E0%B8%A4%E0%B8%81%E0%B8%A9%E0%B9%8C-345-%E0%B8%9B%E0%B8%B2%E0%B8%81%E0%B9%80%E0%B8%81%E0%B8%A3%E0%B9%87%E0%B8%94-Thailand.jpg'},
+          {title:'แปลนบ้านเล็ก ๆ', img:'https://sg1-cdn.pgimgs.com/projectnet-unit/232832/ZUFP.152863273.R1500X1500.jpg'}
         ]
       },
-      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop',
+      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'4 ห้องนอน | 3 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop',
         gallery:[
           {title:'หน้าบ้าน/ที่จอด', img:'https://picsum.photos/seed/b1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
           {title:'ห้องนั่งเล่น', img:'https://picsum.photos/seed/b2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
