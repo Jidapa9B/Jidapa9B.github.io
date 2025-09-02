@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>บ้านภิรมย์</title>
+  <title>บ้านในฝันของคุณ — ตัวอย่าง</title>
   <style>
     :root{--green:#2E8B57; --green-dark:#218a55; --maxw:1100px; --radius:12px}
     *{box-sizing:border-box}
@@ -105,138 +105,50 @@
       box-shadow:0 4px 10px rgba(0,0,0,0.08);
     }
     .gallery-item .title{opacity:.9}
-  </style>
 
-  <!-- ===== เพิ่มสไตล์ Lightbox + ปรับ UI Calculator/Contact (เพิ่มเท่านั้น ไม่แก้บรรทัดเดิม) ===== -->
-  <style>
-    /* Lightbox Styles */
+    /* ===== (เพิ่ม) Lightbox ===== */
     .lightbox{
-      position:fixed; inset:0;
-      background:rgba(0,0,0,0.82);
-      backdrop-filter: blur(2px);
-      display:none; align-items:center; justify-content:center;
-      z-index:9999;
-      padding:24px;
+      position:fixed; inset:0; background:rgba(0,0,0,.85); display:none; align-items:center; justify-content:center; z-index:9999;
     }
     .lightbox.open{display:flex}
-    .lightbox-inner{position:relative; max-width:92vw; max-height:86vh; display:flex; align-items:center; justify-content:center}
-    .lightbox img{
-      max-width:92vw; max-height:86vh; border-radius:12px;
-      box-shadow:0 20px 60px rgba(0,0,0,.35);
-      background:#111;
+    .lightbox-inner{position:relative; width:min(96vw,1100px); max-height:92vh; display:flex; align-items:center; justify-content:center}
+    .lightbox img{max-width:100%; max-height:92vh; border-radius:12px; box-shadow:0 12px 32px rgba(0,0,0,.5)}
+    .lb-close, .lb-prev, .lb-next{
+      position:absolute; top:50%; transform:translateY(-50%); background:rgba(255,255,255,.12); color:#fff; border:none; width:46px; height:46px; border-radius:50%;
+      display:flex; align-items:center; justify-content:center; cursor:pointer; backdrop-filter:saturate(140%) blur(4px); transition:background .2s ease, transform .2s ease;
     }
+    .lb-close{top:16px; right:16px; transform:none}
+    .lb-prev{left:-58px}
+    .lb-next{right:-58px}
+    .lb-prev:hover,.lb-next:hover,.lb-close:hover{background:rgba(255,255,255,.22); transform:translateY(-50%) scale(1.04)}
+    .lb-close:hover{transform:none; }
     .lb-caption{
-      position:absolute; left:50%; transform:translateX(-50%);
-      bottom:-44px; color:#f0f0f0; font-weight:600; text-align:center; white-space:nowrap;
-      text-shadow:0 2px 8px rgba(0,0,0,.5);
+      position:absolute; left:0; right:0; bottom:-50px; color:#fff; text-align:center; font-size:.95rem; opacity:.9
     }
-    .lb-btn{
-      position:absolute; top:50%; transform:translateY(-50%);
-      width:46px; height:46px; border:none; border-radius:999px; cursor:pointer;
-      background:rgba(255,255,255,0.9); color:#111; font-size:22px; font-weight:800; line-height:46px;
-      box-shadow:0 6px 16px rgba(0,0,0,.25);
-      display:flex; align-items:center; justify-content:center;
-      transition:transform .15s ease, background .15s ease;
-      user-select:none;
-    }
-    .lb-btn:hover{ transform:translateY(-50%) scale(1.06); background:#fff; }
-    .lb-prev{left:-62px}
-    .lb-next{right:-62px}
-    .lb-close{
-      top:-62px; right:0; transform:none;
-      width:40px; height:40px; font-size:20px; line-height:40px;
-      background:rgba(255,255,255,.92);
-    }
-    @media(max-width:640px){
-      .lb-prev{left:-12px}
-      .lb-next{right:-12px}
-      .lb-close{top:-52px}
-      .lb-caption{bottom:-38px; font-size:.95rem}
+    @media(max-width:720px){
+      .lb-prev{left:6px} .lb-next{right:6px}
+      .lb-caption{bottom:-40px; padding:0 10px}
     }
 
-    /* ===== ปรับ UI หน้าคำนวณดอกเบี้ย (#calculator) ===== */
-    #calculator > .box{
-      background:linear-gradient(145deg,#f3fff6,#ffffff);
-      border:1px solid #e6f4ea;
-      box-shadow:0 10px 28px rgba(0,0,0,0.08);
-    }
-    #calculator label{font-weight:700; color:#2a4732; display:block; margin-bottom:6px}
-    #calculator input[type="number"]{
-      width:100%;
-      padding:12px 14px;
-      border:1px solid #dfe7e2;
-      border-radius:10px;
-      background:#ffffff;
-      color:#123;
-      outline:none;
-      box-shadow:0 1px 0 rgba(0,0,0,0.03) inset;
-      transition:border-color .15s ease, box-shadow .15s ease, transform .05s ease;
-    }
-    #calculator input[type="number"]:focus{
-      border-color:#b8e0c5;
-      box-shadow:0 0 0 3px rgba(46,139,87,.12);
-    }
-    #calculator .btn{
-      padding:12px 18px;
-      border-radius:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-      box-shadow:0 8px 16px rgba(46,139,87,.22);
-    }
-    #calc-reset.btn{box-shadow:none}
-    #calc-result.box{
-      border:1px dashed #b0d7be;
-      background:linear-gradient(180deg,#f6fffb,#ffffff);
-      border-radius:12px;
-      transform:translateY(0);
-      transition:transform .2s ease, box-shadow .2s ease;
-    }
-    #calc-result.box[style*="display: block"]{ /* เมื่อแสดงผล */
-      transform:translateY(-2px);
-      box-shadow:0 8px 24px rgba(0,0,0,.08);
-    }
+    /* ===== (เพิ่ม) สวยขึ้นสำหรับคำนวณ/ติดต่อ (ไม่แก้ของเดิม เพิ่มคลาสเสริม) ===== */
+    .card{background:#fff; border-radius:12px; box-shadow:0 8px 24px rgba(0,0,0,.06); padding:16px; border:1px solid rgba(0,0,0,.04)}
+    .input{width:100%; padding:10px 12px; border-radius:8px; border:1px solid #dfe7e2; background:#fbfdfb; font-size:14px}
+    .input:focus{outline:none; border-color:#9ed5b2; box-shadow:0 0 0 3px rgba(46,139,87,.15)}
+    .grid{display:grid; gap:10px}
+    @media(min-width:680px){ .grid.cols-2{grid-template-columns:repeat(2,1fr)}; .grid.cols-3{grid-template-columns:repeat(3,1fr)}; .grid.cols-4{grid-template-columns:repeat(4,1fr)} }
 
-    /* ===== ปรับ UI ฟอร์มติดต่อ (#contact) ===== */
-    #contact > .box{
-      background:linear-gradient(180deg,#ffffff,#fbfffd);
-      border:1px solid #e9f2ec;
-      box-shadow:0 12px 28px rgba(0,0,0,0.07);
-      border-radius:14px;
-    }
-    #contact input[type="text"],
-    #contact input[type="email"],
-    #contact input[type="tel"],
-    #contact textarea{
-      width:100%;
-      padding:12px 14px;
-      border:1px solid #dfe7e2;
-      border-radius:10px;
-      background:#fff;
-      color:#123;
-      outline:none;
-      transition:border-color .15s ease, box-shadow .15s ease;
-    }
-    #contact textarea{min-height:120px; resize:vertical}
-    #contact input:focus,
-    #contact textarea:focus{
-      border-color:#b8e0c5;
-      box-shadow:0 0 0 3px rgba(46,139,87,.12);
-    }
-    #contact .btn{
-      padding:12px 18px;
-      border-radius:10px;
-      font-weight:800;
-      letter-spacing:.2px;
-      box-shadow:0 8px 16px rgba(46,139,87,.22);
-    }
-    #contact .btn#contact-cancel{box-shadow:none}
+    .btn.ghost{background:#fff; color:#2E8B57; border:1px solid #a8d5bf}
+    .note{color:#555; font-size:.9rem}
+
+    /* ป้ายเครดิตภาพ (เลือกแสดงได้ในแกลเลอรี่) */
+    .credit{font-size:.8rem; color:#678; opacity:.9; margin-top:6px}
   </style>
 </head>
 <body>
   <!-- Header: change background-image URL below to your hero image -->
   <header class="hero" style="background-image:url('https://picsum.photos/seed/hero/1600/900')">
     <div class="hero-inner container">
-      <h1 class="hero-title">บ้านภิรมย์</h1>
+      <h1 class="hero-title">บ้านในฝันของคุณ</h1>
     </div>
   </header>
 
@@ -299,7 +211,7 @@
 
       <!-- (ใหม่) กล่องแกลเลอรี่แบบ 2x2 -->
       <div class="box gallery">
-        <h4></h4>
+        <h4>📷 แกลเลอรี่</h4>
         <div class="gallery-grid" id="detail-gallery"></div>
       </div>
 
@@ -377,6 +289,17 @@
     <footer style="margin-top:18px; padding:12px 0; text-align:center">© 2025 — ใส่ข้อมูลเจ้าของ</footer>
   </main>
 
+  <!-- (เพิ่ม) Lightbox DOM -->
+  <div id="lightbox" class="lightbox" aria-hidden="true">
+    <div class="lightbox-inner">
+      <button class="lb-close" id="lb-close" aria-label="ปิด">✕</button>
+      <button class="lb-prev" id="lb-prev" aria-label="ก่อนหน้า">‹</button>
+      <img id="lb-img" alt="">
+      <button class="lb-next" id="lb-next" aria-label="ถัดไป">›</button>
+      <div class="lb-caption" id="lb-cap"></div>
+    </div>
+  </div>
+
   <script>
     // Utility
     const $ = (s) => document.querySelector(s);
@@ -385,42 +308,78 @@
     // Categories and projects (same as before) + (เพิ่ม) gallery ให้แต่ละโปรเจค
     const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
     const projects = [
-      { id:'A', name:'บ้านเดี่ยวภิรมย์ ', category:'บ้านเดี่ยว', price:49000000, type:'บ้านเดี่ยว 2 ชั้น', lot:'540 ตร.ว.', area:'540 ตร.ม.', rooms:'4 ห้องนอน | 5 ห้องน้ำ | ที่จอด 4 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://assets.sansiri.com/o77site/webproject-source/singlehouse/bugaan-krungthep-kreetha/img/house-type/bugaan-krungthep-kreetha-singlehouse-housetype-brill.webp', phone:'089-123-4567', line:'@phiromhome,
+      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Vongburi_House3.jpg', phone:'089-123-4567', line:'@sukjaivilla',
         gallery:[
-          {title:'รูปบ้านภายนอก', img:'https://o77site.s3.ap-southeast-1.amazonaws.com/webproject-source/singlehouse/bugaan-krungthep-kreetha/img/gallery/sansiri-house-bugaan-krungthep-kreetha-gallery-clubhouse-02.webp'},
-          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://o77site.s3.ap-southeast-1.amazonaws.com/webproject-source/singlehouse/bugaan-krungthep-kreetha/img/gallery/sansiri-house-bugaan-krungthep-kreetha-gallery-interior-06.webp'},
-          {title:'รูปห้องนอน', img:'https://o77site.s3.ap-southeast-1.amazonaws.com/webproject-source/singlehouse/bugaan-krungthep-kreetha/img/gallery/sansiri-house-bugaan-krungthep-kreetha-gallery-interior-07.webp'},
-          {title:'ส่วนอื่นๆ', img:'https://o77site.s3.ap-southeast-1.amazonaws.com/webproject-source/singlehouse/bugaan-krungthep-kreetha/img/gallery/sansiri-house-bugaan-krungthep-kreetha-gallery-clubhouse-01.webp'}
+          {title:'รูปบ้านภายนอก (แพร่ - วังบูรพา)', img:'https://upload.wikimedia.org/wikipedia/commons/2/25/Vongburi_House3.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Vongburi House, Phrae — Wikimedia Commons (CC BY-SA)'},
+          {title:'รูปห้องนั่งเล่น (เชียงใหม่)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — Chiang Mai — CC BY 2.0 (Wikimedia)'},
+          {title:'รูปห้องนอน', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
+          {title:'แปลนบ้าน (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons (Public/CC)'}
         ]
       },
-      { id:'B', name:'ทาวน์โฮมภิรมย์ ', category:'ทาวน์โฮม', price:2490000, type:'ทาวน์โฮม 2 ชั้น', lot:'90 ตร.ว.', area:'90 ตร.ม.', rooms:'2 ห้องนอน | 3 ห้องน้ำ | ที่จอด 1 คัน', highlights:['ราคาเข้าถึงได้','ทำเลใกล้สนามบิน','ใกล้ห้างสรรพสินค้า'], img:'', phone:'089-987-6543', line:'@phiromhome',
+      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://upload.wikimedia.org/wikipedia/commons/0/0f/Chinatown_Bangkok_Thailand_-_panoramio_%282%29.jpg', phone:'081-987-6543', line:'@townhome_shop',
         gallery:[
-          {title:'หน้าบ้าน/ที่จอด', img:''},
-          {title:'ห้องนั่งเล่น', img:''},
-          {title:'ห้องนอนหลัก', img:''},
-          {title:'ส่วนอื่นๆ', img:''}
+          {title:'หน้าบ้าน/แถวทาวน์โฮมสไตล์ชุมชนเมือง (กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/0/0f/Chinatown_Bangkok_Thailand_-_panoramio_%282%29.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Bangkok street row — CC BY-SA (Wikimedia)'},
+          {title:'ห้องนั่งเล่น (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — Chiang Mai — CC BY 2.0 (Wikimedia)'},
+          {title:'ครัวแบบไทย', img:'https://upload.wikimedia.org/wikipedia/commons/8/88/Chiang_Mai_restaurant_kitchen.JPG', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Chiang Mai kitchen — CC BY-SA (Wikimedia)'},
+          {title:'แปลนชั้นทาวน์โฮม (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
         ]
       },
-      { id:'C', name:'คอนโดภิรมย์ ', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://picsum.photos/seed/h3/900/500', phone:'090-111-2222', line:'@condo_sukjai',
+      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Ashton_Silom_2019-10-29.jpg', phone:'090-111-2222', line:'@condo_sukjai',
         gallery:[
-          {title:'ภาพตึก/ส่วนกลาง', img:'https://picsum.photos/seed/c1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'ห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/c2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'ห้องนอน', img:'https://picsum.photos/seed/c3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'ผังห้อง', img:'https://picsum.photos/seed/c4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+          {title:'ภาพตึก/ส่วนกลาง (Ashton Silom, กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/4/4b/Ashton_Silom_2019-10-29.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Ashton Silom — Wikimedia Commons (CC BY-SA)'},
+          {title:'ห้องนั่งเล่นคอนโด (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/d/d6/Main_Home_living_room_with_dining_area._%2843339578214%29.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Iain Cameron — CC BY 2.0 (Wikimedia)'},
+          {title:'ห้องนอนคอนโด (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
+          {title:'ผังห้อง (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
         ]
       },
-      { id:'D', name:'โปรเจคใหม่ ', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://picsum.photos/seed/h4/900/500', phone:'082-222-3333', line:'@newproject',
+      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', phone:'082-222-3333', line:'@newproject',
         gallery:[
-          {title:'ภายนอกโครงการ', img:'https://picsum.photos/seed/d1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'โถง/ห้องนั่งเล่น', img:'https://picsum.photos/seed/d2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'ห้องนอนมาสเตอร์', img:'https://picsum.photos/seed/d3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'Floor Plan', img:'https://picsum.photos/seed/d4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+          {title:'ภายนอก/บรรยากาศ Heritage (กทม.)', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)', credit:'Nai Lert Park Heritage — CC BY-SA (Wikimedia)'},
+          {title:'โถง/ห้องนั่งเล่น (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/3/3f/Nai_Lert_Park_Heritage_Home_-_living_room.jpg', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)', credit:'Nai Lert Park Heritage — CC BY-SA (Wikimedia)'},
+          {title:'ห้องนอนมาสเตอร์ (ไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/f/fc/Main_bedroom_with_walk-in_wardrobe_and_large_bathroom_with_double_Jacuzzi_and_shower._%2843339576684%29.jpg', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)', credit:'Thailand interior — CC BY 2.0 (Wikimedia)'},
+          {title:'Floor Plan (อ้างอิงไทย)', img:'https://upload.wikimedia.org/wikipedia/commons/a/a3/Thai_house_plan.png', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)', credit:'Thai house plan — Wikimedia Commons'}
         ]
       }
     ];
 
     // Track last viewed project for "รายละเอียด" nav
     let lastViewedId = null;
+
+    // ===== Lightbox State =====
+    let lbOpen = false;
+    let lbProject = null;
+    let lbIndex = 0;
+
+    function openLightbox(projectId, index){
+      lbProject = projects.find(p=>p.id===projectId);
+      if(!lbProject || !lbProject.gallery || !lbProject.gallery.length) return;
+      lbIndex = (index||0);
+      const g = lbProject.gallery[lbIndex];
+      const box = $('#lightbox');
+      $('#lb-img').src = g.img;
+      $('#lb-img').alt = g.title || '';
+      $('#lb-cap').textContent = (g.title? g.title+' — ': '') + (g.credit || '');
+      box.classList.add('open');
+      box.setAttribute('aria-hidden','false');
+      lbOpen = true;
+    }
+    function closeLightbox(){
+      $('#lightbox').classList.remove('open');
+      $('#lightbox').setAttribute('aria-hidden','true');
+      lbOpen = false;
+    }
+    function lbNext(){
+      if(!lbProject) return;
+      lbIndex = (lbIndex + 1) % lbProject.gallery.length;
+      const g = lbProject.gallery[lbIndex];
+      $('#lb-img').src = g.img; $('#lb-img').alt = g.title || ''; $('#lb-cap').textContent = (g.title? g.title+' — ': '') + (g.credit || '');
+    }
+    function lbPrev(){
+      if(!lbProject) return;
+      lbIndex = (lbIndex - 1 + lbProject.gallery.length) % lbProject.gallery.length;
+      const g = lbProject.gallery[lbIndex];
+      $('#lb-img').src = g.img; $('#lb-img').alt = g.title || ''; $('#lb-cap').textContent = (g.title? g.title+' — ': '') + (g.credit || '');
+    }
 
     // render categories (click to filter)
     function setupCategoryButtons(){
@@ -510,14 +469,16 @@
       if(gwrap){
         gwrap.innerHTML = '';
         if(Array.isArray(p.gallery) && p.gallery.length){
-          p.gallery.forEach(g=>{
+          p.gallery.forEach((g, idx)=>{
             const card = document.createElement('div');
             card.className = 'gallery-item';
             if(g.bg) card.style.setProperty('--bg', g.bg);
             card.innerHTML = `
               <img src="${g.img}" alt="${g.title}">
-              <div class="title">${g.title}</div>`;
-            card.addEventListener('click', ()=> window.open(g.img, '_blank'));
+              <div class="title">${g.title}</div>
+              ${g.credit ? `<div class="credit">${g.credit}</div>` : ''}`;
+            // >>> เปลี่ยนเป็น Lightbox (แทนการเปิดแท็บใหม่)
+            card.addEventListener('click', ()=> openLightbox(p.id, idx));
             gwrap.appendChild(card);
           });
         }else{
@@ -586,6 +547,38 @@
       });
     }
 
+    // ===== (เพิ่ม) ตกแต่ง UI สำหรับ "คำนวณ" และ "ติดต่อเรา" (ห่อ element เดิมด้วยคลาสเสริมแบบ script) =====
+    function polishForms(){
+      // calculator: ห่อ .box เดิมให้ดูเป็น card และใส่สไตล์ input
+      const calc = $('#calculator .box');
+      if(calc && !calc.classList.contains('card')) calc.classList.add('card');
+      // ใส่คลาส input ให้กับอินพุต
+      ['#calc-price','#calc-down','#calc-rate','#calc-years'].forEach(sel=>{
+        const el=$(sel); if(el) el.classList.add('input');
+      });
+      // contact: เช่นเดียวกัน
+      const contactBox = $('#contact .box'); if(contactBox && !contactBox.classList.contains('card')) contactBox.classList.add('card');
+      ['#contact-name','#contact-email','#contact-phone','#contact-message'].forEach(sel=>{
+        const el=$(sel); if(el) el.classList.add('input');
+      });
+    }
+
+    // ===== (เพิ่ม) Lightbox controls =====
+    function setupLightboxControls(){
+      $('#lb-close').addEventListener('click', closeLightbox);
+      $('#lb-next').addEventListener('click', lbNext);
+      $('#lb-prev').addEventListener('click', lbPrev);
+      // ปิดเมื่อคลิกพื้นหลัง
+      $('#lightbox').addEventListener('click', (e)=>{ if(e.target.id==='lightbox') closeLightbox(); });
+      // ปุ่มคีย์บอร์ด
+      document.addEventListener('keydown', (e)=>{
+        if(!lbOpen) return;
+        if(e.key==='Escape') closeLightbox();
+        else if(e.key==='ArrowRight') lbNext();
+        else if(e.key==='ArrowLeft') lbPrev();
+      });
+    }
+
     // init
     document.addEventListener('DOMContentLoaded', ()=>{
       setupCategoryButtons(); renderProjects(categories[0]); setupNav();
@@ -597,102 +590,12 @@
       // contact form
       $('#contact-form').addEventListener('submit', submitContact);
       $('#contact-cancel').addEventListener('click', (e)=>{ e.preventDefault(); showSection('home'); });
+
+      // (เพิ่ม) ตกแต่ง
+      polishForms();
+      // (เพิ่ม) Lightbox
+      setupLightboxControls();
     });
-  </script>
-
-  <!-- ===== เพิ่ม: Lightbox Markup (เพิ่มเท่านั้น ไม่แก้ของเดิม) ===== -->
-  <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="แกลเลอรี่รูปภาพ">
-    <div class="lightbox-inner">
-      <button class="lb-btn lb-close" aria-label="ปิด">×</button>
-      <button class="lb-btn lb-prev" aria-label="ก่อนหน้า">‹</button>
-      <img id="lb-image" src="" alt="">
-      <div id="lb-caption" class="lb-caption"></div>
-      <button class="lb-btn lb-next" aria-label="ถัดไป">›</button>
-    </div>
-  </div>
-
-  <!-- ===== เพิ่ม: Lightbox Script + Interceptor (เพิ่มเท่านั้น ไม่แก้ของเดิม) ===== -->
-  <script>
-    (function(){
-      const overlay = document.getElementById('lightbox');
-      const imgEl = document.getElementById('lb-image');
-      const capEl = document.getElementById('lb-caption');
-      const btnPrev = document.querySelector('.lb-prev');
-      const btnNext = document.querySelector('.lb-next');
-      const btnClose = document.querySelector('.lb-close');
-
-      let items = []; // {src,title}
-      let index = 0;
-
-      function collectItems(){
-        const nodes = Array.from(document.querySelectorAll('#detail-gallery .gallery-item'));
-        items = nodes.map(node=>{
-          const im = node.querySelector('img');
-          const titleEl = node.querySelector('.title');
-          return {
-            src: im ? im.src : '',
-            title: titleEl ? (titleEl.textContent||'').trim() : ''
-          };
-        });
-        return nodes;
-      }
-
-      function render(){
-        if(!items.length) return;
-        const safeIndex = (index + items.length) % items.length;
-        const it = items[safeIndex];
-        imgEl.src = it.src;
-        imgEl.alt = it.title || '';
-        capEl.textContent = (it.title ? it.title + ' ' : '') + '(' + (safeIndex+1) + '/' + items.length + ')';
-      }
-
-      function openLightbox(i){
-        index = i || 0;
-        render();
-        overlay.classList.add('open');
-        overlay.setAttribute('aria-hidden','false');
-        document.documentElement.style.overflow = 'hidden';
-      }
-
-      function closeLightbox(){
-        overlay.classList.remove('open');
-        overlay.setAttribute('aria-hidden','true');
-        document.documentElement.style.overflow = '';
-      }
-
-      function next(){ if(items.length){ index = (index+1)%items.length; render(); } }
-      function prev(){ if(items.length){ index = (index-1+items.length)%items.length; render(); } }
-
-      // Intercept clicks on gallery items (capture) to replace window.open without editing original code
-      document.addEventListener('click', function(e){
-        var grid = document.getElementById('detail-gallery');
-        if(!grid) return;
-        var target = e.target && (e.target.closest ? e.target.closest('.gallery-item') : null);
-        if(target && grid.contains(target)){
-          var nodes = collectItems();
-          var i = nodes.indexOf(target);
-          if(i < 0) i = 0;
-          e.preventDefault();
-          e.stopPropagation();
-          openLightbox(i);
-        }
-      }, true);
-
-      if(btnNext) btnNext.addEventListener('click', function(e){ e.preventDefault(); next(); });
-      if(btnPrev) btnPrev.addEventListener('click', function(e){ e.preventDefault(); prev(); });
-      if(btnClose) btnClose.addEventListener('click', function(e){ e.preventDefault(); closeLightbox(); });
-
-      if(overlay) overlay.addEventListener('click', function(e){
-        if(e.target === overlay) closeLightbox();
-      });
-
-      document.addEventListener('keydown', function(e){
-        if(!overlay.classList.contains('open')) return;
-        if(e.key === 'Escape') closeLightbox();
-        else if(e.key === 'ArrowRight') next();
-        else if(e.key === 'ArrowLeft') prev();
-      });
-    })();
   </script>
 </body>
 </html>
