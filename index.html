@@ -105,8 +105,11 @@
       box-shadow:0 4px 10px rgba(0,0,0,0.08);
     }
     .gallery-item .title{opacity:.9}
+  </style>
 
-    /* ===== เพิ่ม: Lightbox Styles ===== */
+  <!-- ===== เพิ่มสไตล์ Lightbox + ปรับ UI Calculator/Contact (เพิ่มเท่านั้น ไม่แก้บรรทัดเดิม) ===== -->
+  <style>
+    /* Lightbox Styles */
     .lightbox{
       position:fixed; inset:0;
       background:rgba(0,0,0,0.82);
@@ -150,6 +153,83 @@
       .lb-close{top:-52px}
       .lb-caption{bottom:-38px; font-size:.95rem}
     }
+
+    /* ===== ปรับ UI หน้าคำนวณดอกเบี้ย (#calculator) ===== */
+    #calculator > .box{
+      background:linear-gradient(145deg,#f3fff6,#ffffff);
+      border:1px solid #e6f4ea;
+      box-shadow:0 10px 28px rgba(0,0,0,0.08);
+    }
+    #calculator label{font-weight:700; color:#2a4732; display:block; margin-bottom:6px}
+    #calculator input[type="number"]{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid #dfe7e2;
+      border-radius:10px;
+      background:#ffffff;
+      color:#123;
+      outline:none;
+      box-shadow:0 1px 0 rgba(0,0,0,0.03) inset;
+      transition:border-color .15s ease, box-shadow .15s ease, transform .05s ease;
+    }
+    #calculator input[type="number"]:focus{
+      border-color:#b8e0c5;
+      box-shadow:0 0 0 3px rgba(46,139,87,.12);
+    }
+    #calculator .btn{
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+      box-shadow:0 8px 16px rgba(46,139,87,.22);
+    }
+    #calc-reset.btn{box-shadow:none}
+    #calc-result.box{
+      border:1px dashed #b0d7be;
+      background:linear-gradient(180deg,#f6fffb,#ffffff);
+      border-radius:12px;
+      transform:translateY(0);
+      transition:transform .2s ease, box-shadow .2s ease;
+    }
+    #calc-result.box[style*="display: block"]{ /* เมื่อแสดงผล */
+      transform:translateY(-2px);
+      box-shadow:0 8px 24px rgba(0,0,0,.08);
+    }
+
+    /* ===== ปรับ UI ฟอร์มติดต่อ (#contact) ===== */
+    #contact > .box{
+      background:linear-gradient(180deg,#ffffff,#fbfffd);
+      border:1px solid #e9f2ec;
+      box-shadow:0 12px 28px rgba(0,0,0,0.07);
+      border-radius:14px;
+    }
+    #contact input[type="text"],
+    #contact input[type="email"],
+    #contact input[type="tel"],
+    #contact textarea{
+      width:100%;
+      padding:12px 14px;
+      border:1px solid #dfe7e2;
+      border-radius:10px;
+      background:#fff;
+      color:#123;
+      outline:none;
+      transition:border-color .15s ease, box-shadow .15s ease;
+    }
+    #contact textarea{min-height:120px; resize:vertical}
+    #contact input:focus,
+    #contact textarea:focus{
+      border-color:#b8e0c5;
+      box-shadow:0 0 0 3px rgba(46,139,87,.12);
+    }
+    #contact .btn{
+      padding:12px 18px;
+      border-radius:10px;
+      font-weight:800;
+      letter-spacing:.2px;
+      box-shadow:0 8px 16px rgba(46,139,87,.22);
+    }
+    #contact .btn#contact-cancel{box-shadow:none}
   </style>
 </head>
 <body>
@@ -520,7 +600,7 @@
     });
   </script>
 
-  <!-- ===== เพิ่ม: Lightbox Markup (ไม่แก้ของเดิม เพิ่มอย่างเดียว) ===== -->
+  <!-- ===== เพิ่ม: Lightbox Markup (เพิ่มเท่านั้น ไม่แก้ของเดิม) ===== -->
   <div id="lightbox" class="lightbox" aria-hidden="true" role="dialog" aria-label="แกลเลอรี่รูปภาพ">
     <div class="lightbox-inner">
       <button class="lb-btn lb-close" aria-label="ปิด">×</button>
@@ -531,7 +611,7 @@
     </div>
   </div>
 
-  <!-- ===== เพิ่ม: Lightbox Script (ไม่แก้ของเดิม เพิ่มอย่างเดียว) ===== -->
+  <!-- ===== เพิ่ม: Lightbox Script + Interceptor (เพิ่มเท่านั้น ไม่แก้ของเดิม) ===== -->
   <script>
     (function(){
       const overlay = document.getElementById('lightbox');
@@ -541,7 +621,7 @@
       const btnNext = document.querySelector('.lb-next');
       const btnClose = document.querySelector('.lb-close');
 
-      let items = []; // {src,title} ของภาพในแกลเลอรี่ปัจจุบัน
+      let items = []; // {src,title}
       let index = 0;
 
       function collectItems(){
@@ -571,7 +651,6 @@
         render();
         overlay.classList.add('open');
         overlay.setAttribute('aria-hidden','false');
-        // ป้องกัน scroll พื้นหลังเล็กน้อย
         document.documentElement.style.overflow = 'hidden';
       }
 
@@ -584,7 +663,7 @@
       function next(){ if(items.length){ index = (index+1)%items.length; render(); } }
       function prev(){ if(items.length){ index = (index-1+items.length)%items.length; render(); } }
 
-      // ดักคลิกที่การ์ดแกลเลอรี่ด้วย capture phase เพื่อ "แทนที่" window.open เดิม โดยไม่แก้โค้ดเดิม
+      // Intercept clicks on gallery items (capture) to replace window.open without editing original code
       document.addEventListener('click', function(e){
         var grid = document.getElementById('detail-gallery');
         if(!grid) return;
@@ -597,19 +676,16 @@
           e.stopPropagation();
           openLightbox(i);
         }
-      }, true); // ใช้ capture=true
+      }, true);
 
-      // ปุ่มควบคุม
       if(btnNext) btnNext.addEventListener('click', function(e){ e.preventDefault(); next(); });
       if(btnPrev) btnPrev.addEventListener('click', function(e){ e.preventDefault(); prev(); });
       if(btnClose) btnClose.addEventListener('click', function(e){ e.preventDefault(); closeLightbox(); });
 
-      // คลิกพื้นหลังเพื่อปิด
       if(overlay) overlay.addEventListener('click', function(e){
         if(e.target === overlay) closeLightbox();
       });
 
-      // คีย์บอร์ด
       document.addEventListener('keydown', function(e){
         if(!overlay.classList.contains('open')) return;
         if(e.key === 'Escape') closeLightbox();
