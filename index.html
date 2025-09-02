@@ -385,40 +385,39 @@
     // Categories and projects (same as before) + (เพิ่ม) gallery ให้แต่ละโปรเจค
     const categories = ["บ้านเดี่ยว","ทาวน์โฮม","คอนโด","โครงการใหม่"];
     const projects = [
-      { id:'A', name:'บ้านในฝัน A', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://picsum.photos/seed/h1/900/500', phone:'089-123-4567', line:'@sukjaivilla',
-        gallery:[
-          {title:'รูปบ้านภายนอก', img:'https://picsum.photos/seed/a1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'รูปห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/a2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'รูปห้องนอน', img:'https://picsum.photos/seed/a3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'แปลนบ้านเล็ก ๆ', img:'https://picsum.photos/seed/a4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
-        ]
-      },
-      { id:'B', name:'ทาวน์โฮมสุขใจ B', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://picsum.photos/seed/h2/900/500', phone:'081-987-6543', line:'@townhome_shop',
-        gallery:[
-          {title:'หน้าบ้าน/ที่จอด', img:'https://picsum.photos/seed/b1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'ห้องนั่งเล่น', img:'https://picsum.photos/seed/b2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'ห้องนอนหลัก', img:'https://picsum.photos/seed/b3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'แปลนทาวน์โฮม', img:'https://picsum.photos/seed/b4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
-        ]
-      },
-      { id:'C', name:'คอนโดสุขใจ C', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://picsum.photos/seed/h3/900/500', phone:'090-111-2222', line:'@condo_sukjai',
-        gallery:[
-          {title:'ภาพตึก/ส่วนกลาง', img:'https://picsum.photos/seed/c1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'ห้องนั่งเล่น/ครัว', img:'https://picsum.photos/seed/c2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'ห้องนอน', img:'https://picsum.photos/seed/c3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'ผังห้อง', img:'https://picsum.photos/seed/c4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
-        ]
-      },
-      { id:'D', name:'โปรเจคใหม่ D', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://picsum.photos/seed/h4/900/500', phone:'082-222-3333', line:'@newproject',
-        gallery:[
-          {title:'ภายนอกโครงการ', img:'https://picsum.photos/seed/d1/1200/800', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
-          {title:'โถง/ห้องนั่งเล่น', img:'https://picsum.photos/seed/d2/1200/800', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
-          {title:'ห้องนอนมาสเตอร์', img:'https://picsum.photos/seed/d3/1200/800', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
-          {title:'Floor Plan', img:'https://picsum.photos/seed/d4/1200/800', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
-        ]
-      }
-    ];
-
+{ id:'A', name:'บ้านเดี่ยวภิรมย์ ', category:'บ้านเดี่ยว', price:3500000, type:'บ้านเดี่ยว 2 ชั้น', lot:'60 ตร.ว.', area:'180 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ | ที่จอด 2 คัน', highlights:['ใกล้ห้าง โรงเรียน รถไฟฟ้า','บ้านสไตล์โมเดิร์น โปร่ง โล่ง','มีสนามหญ้าและสวนเล็ก'], img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/mabel-bangna-km26/img/plan/mabel-bangna-km26-singlehouse-housetype-cedar.webp', phone:'089-123-4567', line:'@phiromhome',
+gallery:[
+{title:'รูปบ้านภายนอก', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/mabel-bangna-km-26/img/gallery/mabel-bangna-km26-singlehouse-gallery-02.webp', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+{title:'รูปห้องนั่งเล่น/ครัว', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/mabel-bangna-km-26/img/gallery/mabel-bangna-km26-singlehouse-gallery-07.webp', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+{title:'รูปห้องนอน', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/mabel-bangna-km-26/img/gallery/mabel-bangna-km26-singlehouse-gallery-12.webp', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+{title:'ส่วนอื่น ๆ', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/mabel-bangna-km-26/img/gallery/mabel-bangna-km26-singlehouse-gallery-06.webp', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+]
+},
+{ id:'B', name:'ทาวน์โฮมภิรมย์', category:'ทาวน์โฮม', price:2200000, type:'ทาวน์โฮม 2 ชั้น', lot:'28 ตร.ว.', area:'110 ตร.ม.', rooms:'3 ห้องนอน | 2 ห้องน้ำ', highlights:['ราคาเข้าถึงได้','ทำเลใกล้ตลาด','ระบบรักษาความปลอดภัย'], img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-ramkhamhaeng/img/floorplan/anasiri-ramkhamhaeng-house-townhome-majorca-111.webp', phone:'081-987-6543', line:'@phiromhome',
+gallery:[
+{title:'หน้าบ้าน/ที่จอด', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-ramkhamhaeng/img/gallery/anasiri-ramkhamhaeng-gallery-house-3.webp', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+{title:'ห้องนั่งเล่น', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-ramkhamhaeng/img/gallery/anasiri-ramkhamhaeng-gallery-house-1.webp', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+{title:'ห้องนอนหลัก', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-ramkhamhaeng/img/gallery/anasiri-ramkhamhaeng-gallery-house-10.webp', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+{title:'ส่วนอื่น ๆ', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/anasiri-ramkhamhaeng/img/gallery/anasiri-ramkhamhaeng-house-townhome%E2%80%8B-gallery-2.webp', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+]
+},
+{ id:'C', name:'คอนโดภิรมย์', category:'คอนโด', price:1800000, type:'คอนโด 2 ห้องนอน', lot:'-', area:'78 ตร.ม.', rooms:'2 ห้องนอน | 1 ห้องน้ำ', highlights:['วิวสวนสวย','สระว่ายน้ำและฟิตเนส','ใกล้รถไฟฟ้า'], img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/condominium/pynn-pridi-20/img/gallery/pynn-pridi20-condo-gallery-01.webp', phone:'090-111-2222', line:'@phiromhome',
+gallery:[
+{title:'ภาพตึก/ส่วนกลาง', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/condominium/pynn-pridi-20/img/gallery/pynn-pridi20-condo-gallery-01.webp', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+{title:'ห้องนั่งเล่น/ครัว', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/condominium/pynn-pridi-20/img/gallery/pynn-pridi20-condo-gallery-02.webp', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+{title:'ห้องนอน', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/condominium/pynn-pridi-20/img/gallery/pynn-pridi20-condo-gallery-03.webp', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+{title:'ผังห้อง', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/condominium/pynn-pridi-20/img/plan/pynn-pridi20-condo-unit-plan-2a.webp', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+]
+},
+{ id:'D', name:'โปรเจคใหม่ ', category:'โครงการใหม่', price:4200000, type:'บ้านเดี่ยว 3 ชั้น', lot:'85 ตร.ว.', area:'240 ตร.ม.', rooms:'4 ห้องนอน | 4 ห้องน้ำ', highlights:['ดีไซน์หรู','วัสดุพรีเมี่ยม','ระบบสมาร์ทโฮม'], img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/habitia-chaiyapruek-wongwaen/img/plan/habitia-chaiyapruek-wongwaen-house%E2%80%8B-type-wood-162.webp', phone:'082-222-3333', line:'@phiromhome',
+gallery:[
+{title:'ภายนอกโครงการ', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/habitia-chaiyapruek-wongwaen/img/gallery/habitia-chaiyapruek-wongwaen-house%E2%80%8B-gallery-02.webp', bg:'linear-gradient(180deg,#e6f0ff,#d9e8ff)'},
+{title:'โถง/ห้องนั่งเล่น', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/habitia-chaiyapruek-wongwaen/img/gallery/habitia-chaiyapruek-wongwaen-house%E2%80%8B-gallery-04.webp', bg:'linear-gradient(180deg,#ddf7e7,#c9f1de)'},
+{title:'ห้องนอนมาสเตอร์', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/habitia-chaiyapruek-wongwaen/img/gallery/habitia-chaiyapruek-wongwaen-house%E2%80%8B-gallery-08.webp', bg:'linear-gradient(180deg,#efe3ff,#e5d7ff)'},
+{title:'สวนโครงการ', img:'https://s3.ap-southeast-1.amazonaws.com/o77site/webproject-source/singlehouse/habitia-chaiyapruek-wongwaen/img/gallery/habitia-chaiyapruek-wongwaen-house%E2%80%8B-gallery-03.webp', bg:'linear-gradient(180deg,#ffe9d6,#ffe0c1)'}
+]
+}
+];
     // Track last viewed project for "รายละเอียด" nav
     let lastViewedId = null;
 
